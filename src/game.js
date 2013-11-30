@@ -89,7 +89,7 @@ Game = {
 
 			Crafty.bind('EnterFrame', generateCoin);
 
-			Game.score = Crafty.e('Score').attr({x: 20, y: 20 });
+			Game.score = Crafty.e('Score').attr({x: 15, y: 30 });
 
 			Crafty.bind('EnterFrame', Game.gameLoop);
 		});
