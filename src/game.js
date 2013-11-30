@@ -32,7 +32,8 @@ Game = {
 					'assets/step01_balloon.png',
 					'assets/parallax00.png',
 					'assets/parallax01.png',
-					'assets/parallax02.png'
+					'assets/parallax02.png',
+					'assets/parallax03.png'
 				], function() {
 				Crafty.sprite(50, 84, 'assets/step01_basket.png', {
 					blimp_base_01: [0, 0]
@@ -49,6 +50,9 @@ Game = {
 				Crafty.sprite(2000, 600, "assets/parallax02.png", {
 					background_layer_02: [0,0]
 				});
+				Crafty.sprite(2000, 600, "assets/parallax03.png", {
+					background_layer_03: [0,0]
+				});
 
 				Crafty.scene('Main');
 			})
@@ -58,6 +62,7 @@ Game = {
 			Crafty.e('Parallax').background('assets/parallax00.png').parallax(0);
 			Crafty.e('Parallax').background('assets/parallax01.png').parallax(1);
 			Crafty.e('Parallax').background('assets/parallax02.png').parallax(1.5);
+			Crafty.e('Parallax').background('assets/parallax03.png').parallax(2);
 
 			Crafty.e('Player').attr({ x: 50, y: 50 });
 
