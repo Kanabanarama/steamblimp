@@ -4,8 +4,6 @@ Crafty.c('Player', {
 	coins: 0,
 
 	init: function () {
-		var player = this;
-
 		this.requires('GameObject, Controls, Collision');
 
 		this.fourway(5);
@@ -41,5 +39,38 @@ Crafty.c('Player', {
 		this.attach(this.drive);
 		this.attach(this.base);
 		this.attach(this.gun);
+
+		var options = {
+			maxParticles: 100,
+			size: 20,
+			sizeRandom: 4,
+			speed: 0.3,
+			speedRandom: 1.2,
+// Lifespan in frames
+			lifeSpan: 49,
+			lifeSpanRandom: 7,
+// Angle is calculated clockwise: 12pm is 0deg, 3pm is 90deg etc.
+			angle: 0,
+			angleRandom: 0,
+			startColour: [255, 131, 0, 1],
+			startColourRandom: [48, 50, 45, 0],
+			endColour: [245, 35, 0, 0],
+			endColourRandom: [60, 60, 60, 0],
+// Only applies when fastMode is off, specifies how sharp the gradients are drawn
+			sharpness: 20,
+			sharpnessRandom: 10,
+// Random spread from origin
+			spread: 5,
+// How many frames should this last
+			duration: -1,
+// Will draw squares instead of circle gradients
+			fastMode: false,
+			gravity: { x: 0, y: -0.1 },
+// sensible values are 0-3
+			jitter: 0
+		};
+
+		//var flame = Crafty.e("2D,Canvas,Particles").particles(options).attr({x: this.x, y: this.y });
+		//this.attach( flame );
 	}
 });

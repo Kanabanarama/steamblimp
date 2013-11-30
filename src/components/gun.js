@@ -28,11 +28,11 @@ Crafty.c('Gun_1', {
 			bullet.attr({
 				x: this.x + 30,
 				y: this.y + 53,
-				w: 2,
-				h: 2
+				w: 3,
+				h: 3
 			});
 
-			var drift = (Math.random() - 0.5) * 1.4;
+			var drift = (Math.random() - 0.5) * 2;
 
 			Crafty.audio.play('gun1_shot');
 			var moveBullet = function () {
