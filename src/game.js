@@ -81,9 +81,7 @@ Game = {
 		});
 
 		Crafty.scene('Main', function () {
-			Crafty.scene('Main', function() {
-				Crafty.scene('Stage01');
-			});
+			Crafty.scene('Stage01');
 		});
 	},
 	gameLoop: function (e) {
