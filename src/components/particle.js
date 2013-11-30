@@ -5,17 +5,20 @@ Crafty.c('Particle', {
 
 	setParticles: function (options) {
 		var particle = this;
-		var removeAfter = options.duration + 3;
 
-		var removeMe = function () {
-			removeAfter--;
-			if (removeAfter === 0) {
-				particle.unbind('EnterFrame', removeMe);
-				particle.destroy();
-			}
-		};
+		if (options.duration !== -1) {
+			var removeAfter = options.duration + 3;
 
-		this.bind('EnterFrame', removeMe);
+			var removeMe = function () {
+				removeAfter--;
+				if (removeAfter === 0) {
+					particle.unbind('EnterFrame', removeMe);
+					particle.destroy();
+				}
+			};
+
+			this.bind('EnterFrame', removeMe);
+		}
 
 		return this.particles(options);
 	}
