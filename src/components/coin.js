@@ -1,9 +1,8 @@
 Crafty.c('Coin', {
 	init: function () {
+		var coin = this;
 		this.requires('GameObject, Collision, Tween, coin_cog');
 		this.attr({w: 20, h: 20});
-
-		Crafty.audio.add('coin_pickup', 'assets/coin_pickup.ogg');
 
 		this.tween({
 			rotation: 3
@@ -34,15 +33,23 @@ Crafty.c('Coin', {
 			fastMode: false,
 			gravity: { x: 0, y: 0 },
 // sensible values are 0-3
-			jitter: 3
+			jitter: 0
 		};
 
-		this.onHit('Player', function () {
+		coin.onHit('Player', function () {
 			Crafty.audio.play('coin_pickup');
 
-			this.destroy();
+			Crafty.e("Particle").setParticles(options).attr({x: this.x, y: this.y });
 
-			Crafty.e("2D,Canvas,Particles").particles(options).attr({x: this.x, y: this.y });
+			coin.destroy();
 		});
+
+		var removeCoin = function () {
+			if (!coin.withinViewPort()) {
+				coin.unbind('EnterFrame', removeCoin);
+				coin.destroy();
+			}
+		};
+		this.bind('EnterFrame', removeCoin);
 	}
 });
