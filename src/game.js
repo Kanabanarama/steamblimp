@@ -68,41 +68,7 @@ Game = {
 		});
 
 		Crafty.scene('Main', function() {
-			Game.loader.loadJSON({
-				url: 'assets/stage01.json',
-				type: 'json'
-			}, function(content) {
-				var stage = JSON.parse(content);
-				for(i in stage) {
-					var stageObj = Crafty.e(stage[i].components);
-					var funcsToCall = stage[i].calls;
-					for(j in funcsToCall) {
-						var funcName = funcsToCall[j].function;
-						var funcArgs = funcsToCall[j].args;
-						stageObj[funcName](funcArgs);
-					}
-				}
-
-				Crafty.e('Player').attr({ x: 50, y: 50, z: 99 });
-
-				var generateCoin = function (e) {
-					if (e.frame % 100 === 0) {
-
-						var rand = Math.random();
-
-						Crafty.e('Coin').attr({
-							x: 980 + (Crafty.viewport.x * -1),
-							y: rand * (500 + Crafty.viewport.y)
-						});
-					}
-				};
-
-				Crafty.bind('EnterFrame', generateCoin);
-
-				Game.score = Crafty.e('Score').attr({x: 20, y: 20 });
-
-				Crafty.bind('EnterFrame', Game.gameLoop);
-			});
+			Crafty.scene('Stage01');
 		});
 	},
 	gameLoop: function () {
