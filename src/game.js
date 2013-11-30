@@ -34,8 +34,14 @@ Game = {
 				Crafty.sprite(50, 84, 'assets/step01_balloon.png', {
 					blimp_drive_01: [0, 0]
 				});
-				Crafty.sprite(2400, 1200, "assets/parallax.png", {
-					background: [0,0]
+				Crafty.sprite(2000, 600, "assets/parallax.png", {
+					background_layer_01: [0,0]
+				});
+				Crafty.sprite(2000, 600, "assets/parallax.png", {
+					background_layer_02: [0,0]
+				});
+				Crafty.sprite(2000, 600, "assets/parallax.png", {
+					background_layer_03: [0,0]
 				});
 
 				Crafty.scene('Main');
@@ -43,7 +49,19 @@ Game = {
 		});
 
 		Crafty.scene('Main', function() {
-			var background = Crafty.e('2D, Canvas, background').attr( {'x': 0, 'y': -300, 'w': 2400, 'h': 1200} );
+
+			//var background = Crafty.e('2D, Canvas, background').attr( {'x': 0, 'y': -300, 'w': 2400, 'h': 1200} );
+			//var parallax1 = Crafty.e('Parallax').setBackground('background_layer_01').setFrom()
+
+			/*Game.parallax.generate(0, 'background_layer_01', 0);
+			Game.parallax.generate(1, 'background_layer_02', 0);
+			Game.parallax.generate(2, 'background_layer_03', 0);
+			Game.parallax.start();*/
+
+			var parallax01 = Crafty.e('2D, Canvas, Image')
+				.attr({'x': 0, 'y': 0, 'w': Crafty.viewport.width*3, 'h': 600})
+				.image('assets/parallax.png', 'repeat');
+
 			var player = Crafty.e('Player, blimp_base_01').attr( {'x': 50, 'y': 50, 'w': 50, 'h': 84} ).fourway(5);
 			var turret = Crafty.e('2D, Canvas, blimp_drive_01').attr( {'x': 50, 'y': 50, 'w': 50, 'h': 84} );
 			player.attach(turret);
