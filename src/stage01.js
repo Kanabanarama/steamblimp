@@ -4,7 +4,7 @@ Crafty.scene('Stage01', function() {
 	Crafty.e('Parallax').background('assets/parallax02.png').parallax(1.5);
 	Crafty.e('Parallax').background('assets/parallax03.png').parallax(2);
 
-	Crafty.e('Player').attr({ x: 50, y: 50, z: 99 });
+	Crafty.e('Player').attr({ x: 50, y: 50 });
 
 	var generateCoin = function (e) {
 		if (e.frame % 100 === 0) {
@@ -18,9 +18,20 @@ Crafty.scene('Stage01', function() {
 		}
 	};
 
-	Crafty.bind('EnterFrame', generateCoin);
+	var generateBomb = function (e) {
+		if (e.frame % 100 === 0) {
+			var rand = Math.random();
+			Crafty.e('Enemy').attr({
+				x: rand * 1200 + (Crafty.viewport.x * -1),
+				y: -250
+			});
+		}
+	};
 
-	Game.score = Crafty.e('Score').attr({x: 20, y: 20 });
+	Crafty.bind('EnterFrame', generateCoin);
+	Crafty.bind('EnterFrame', generateBomb);
+
+	Game.score = Crafty.e('Score').attr({x: 15, y: 30 });
 
 	Crafty.bind('EnterFrame', Game.gameLoop);
 });
