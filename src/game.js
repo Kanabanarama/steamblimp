@@ -30,7 +30,6 @@ Game = {
 			Crafty.load([
 				'assets/step01_basket.png',
 				'assets/step01_balloon.png',
-				'assets/parallax.png',
 				'assets/damoney_resize.png',
 				'assets/charakter_mit_karabiner.png',
 				'assets/parallax00.png',
