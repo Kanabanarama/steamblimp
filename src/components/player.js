@@ -17,8 +17,7 @@ Crafty.c('Player', {
 		this.bind('EnterFrame', this.driftForward);
 
 		this.onHit('Coin', function () {
-			player.coins++;
-			console.debug('Money: ' + player.coins);
+			Game.score.add(1);
 		});
 	},
 
@@ -29,7 +28,7 @@ Crafty.c('Player', {
 	attachSprites: function () {
 		this.gun = Crafty
 			.e('Gun_1')
-			.attr({x: this.x + 20, y: this.y + 65});
+			.attr({x: this.x + 6, y: this.y});
 
 		this.base = Crafty
 			.e('2D, Canvas, blimp_base_01')
