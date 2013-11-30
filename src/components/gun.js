@@ -4,10 +4,9 @@ Crafty.c('Gun_1', {
 
 	init: function () {
 		var gun = this;
-		this.requires('GameObject, Color');
+		this.requires('GameObject, player_gun1');
 
-		this.color('gold');
-		this.attr({ w: 50, h: 10 });
+		this.attr({ w: 50, h: 84 });
 
 		Crafty.audio.add('gun1_shot', 'assets/gun1_shot.ogg');
 
@@ -27,10 +26,10 @@ Crafty.c('Gun_1', {
 			bullet.color('black');
 
 			bullet.attr({
-				x: this.x + 42,
-				y: this.y + 4,
-				w: 4,
-				h: 4
+				x: this.x + 30,
+				y: this.y + 53,
+				w: 2,
+				h: 2
 			});
 
 			var drift = (Math.random() - 0.5) * 1.4;
