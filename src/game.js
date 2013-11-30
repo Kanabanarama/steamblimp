@@ -45,6 +45,8 @@ Game = {
 				});
 				Crafty.sprite(2000, 600, "assets/parallax00.png", {
 					background_layer_00: [0,0]
+				});
+
 				Crafty.sprite(50, 84, "assets/charakter_mit_karabiner.png", {
 					player_gun1: [0, 0]
 				});
