@@ -1,0 +1,7 @@
+{
+	"0":{"components":"Parallax","calls":[{"function":"background","args":["assets/parallax00.png"]},{"function":"parallax","args":[0]}]},
+	"1":{"components":"Parallax","calls":[{"function":"background","args":["assets/parallax01.png"]},{"function":"parallax","args":[1]}]},
+	"2":{"components":"Parallax","calls":[{"function":"background","args":["assets/parallax02.png"]},{"function":"parallax","args":[1.5]}]},
+	"3":{"components":"Parallax","calls":[{"function":"background","args":["assets/parallax03.png"]},{"function":"parallax","args":[2]}]},
+	"4":{"components":"Enemy","calls":[]}
+}
