@@ -32,7 +32,10 @@ Game = {
 				'assets/step01_balloon.png',
 				'assets/parallax.png',
 				'assets/damoney_resize.png',
-				'assets/charakter_mit_karabiner.png'
+				'assets/charakter_mit_karabiner.png',
+				'assets/parallax00.png',
+				'assets/parallax01.png',
+				'assets/parallax02.png'
 			], function () {
 				Crafty.sprite(50, 84, 'assets/step01_basket.png', {
 					blimp_base_01: [0, 0]
@@ -40,11 +43,19 @@ Game = {
 				Crafty.sprite(50, 84, 'assets/step01_balloon.png', {
 					blimp_drive_01: [0, 0]
 				});
+				Crafty.sprite(2000, 600, "assets/parallax00.png", {
+					background_layer_00: [0,0]
 				Crafty.sprite(50, 84, "assets/charakter_mit_karabiner.png", {
 					player_gun1: [0, 0]
 				});
 				Crafty.sprite(2400, 1200, "assets/parallax.png", {
 					background: [0, 0]
+				});
+				Crafty.sprite(2000, 600, "assets/parallax01.png", {
+					background_layer_01: [0,0]
+				});
+				Crafty.sprite(2000, 600, "assets/parallax02.png", {
+					background_layer_02: [0,0]
 				});
 				Crafty.sprite(20, 20, "assets/damoney_resize.png", {
 					coin_cog: [0, 0]
@@ -54,8 +65,10 @@ Game = {
 			})
 		});
 
-		Crafty.scene('Main', function () {
-			var background = Crafty.e('2D, Canvas, background').attr({'x': 0, 'y': -300, 'w': 2400, 'h': 1200});
+		Crafty.scene('Main', function() {
+			Crafty.e('Parallax').background('assets/parallax00.png').parallax(0);
+			Crafty.e('Parallax').background('assets/parallax01.png').parallax(1);
+			Crafty.e('Parallax').background('assets/parallax02.png').parallax(1.5);
 
 			Crafty.e('Player').attr({ x: 50, y: 50 });
 
