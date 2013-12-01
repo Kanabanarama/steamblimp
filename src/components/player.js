@@ -87,6 +87,16 @@ Crafty.c('Player', {
 				break;
 
 			case Crafty.keys['4']:
+				this.gun.destroy();
+				this.lastWeapon = e.key;
+				this.gun = Crafty
+					.e('Dubstep')
+					.attr({
+						rotation: 180,
+						x: this.x + 75,
+						y: this.y + 83
+					});
+				this.attach(this.gun);
 				break;
 		}
 
