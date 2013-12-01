@@ -34,6 +34,7 @@ Game = {
 			Crafty.audio.add('explosion', 'assets/explosion.ogg');
 			Crafty.audio.add('burning', 'assets/burning.ogg');
 			Crafty.audio.add('lost', 'assets/lost.mp3');
+			Crafty.audio.add('laser', 'assets/laser.ogg');
 
 			Crafty.load([
 				'assets/step01_basket.png',
@@ -50,7 +51,9 @@ Game = {
 				'assets/enemy_flugdings_gatling.png',
 				'assets/gun.png',
 				'assets/cannon.png',
-				'assets/cannon_ball.png'
+				'assets/cannon_ball.png',
+				'assets/laser.png',
+				'assets/laser_shot.png'
 			], function () {
 				Crafty.sprite(50, 84, 'assets/step01_basket.png', {
 					blimp_base_01: [0, 0]
@@ -66,6 +69,12 @@ Game = {
 				});
 				Crafty.sprite(10, 10, "assets/cannon_ball.png", {
 					cannon_ball_sprite: [0, 0]
+				});
+				Crafty.sprite(35, 17, "assets/laser.png", {
+					laser_sprite: [0, 0]
+				});
+				Crafty.sprite(26, 5, "assets/laser_shot.png", {
+					laser_shot_sprite: [0, 0]
 				});
 				Crafty.sprite(2000, 600, "assets/parallax00.png", {
 					background_layer_00: [0, 0]
@@ -108,8 +117,8 @@ Game = {
 		});
 
 		Crafty.scene('Main', function () {
-			Crafty.bind('KeyDown', function(e) {
-				if(e.key === Crafty.keys['ESC']) {
+			Crafty.bind('KeyDown', function (e) {
+				if (e.key === Crafty.keys['ESC']) {
 					Crafty.pause();
 				}
 			});
