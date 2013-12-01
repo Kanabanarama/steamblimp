@@ -6,9 +6,11 @@ Crafty.c('Player', {
 	lives: 8,
 
 	init: function () {
-		this.requires('GameObject, Controls, Collision');
+		this.requires('GameObject, Controls, Collision, Tween');
 
-		this.fourway(5);
+		this.fourway(2);
+
+		this.origin('top center');
 
 		this.attr({ w: this.width, h: this.height });
 
@@ -35,6 +37,8 @@ Crafty.c('Player', {
 		this.bind('EnterFrame', function () {
 			this.attr({y: this.y + 1});
 		});
+
+		if (this.lives === 1) this.tween({rotation: 3}, -1);
 	},
 
 	lastBurn: null,
@@ -70,7 +74,7 @@ Crafty.c('Player', {
 			jitter: 1
 		};
 
-		if( this.lastBurn ) this.lastBurn.destroy();
+		if (this.lastBurn) this.lastBurn.destroy();
 
 		this.lastBurn = Crafty.e("2D,Canvas,Particles").particles(options);
 
@@ -82,8 +86,25 @@ Crafty.c('Player', {
 		this.attach(this.lastBurn);
 	},
 
-	driftForward: function () {
+	rockRight: true,
+
+	driftForward: function (e) {
 		this.attr({ 'x': this.x + 1 });
+
+		if (e.frame % 3 === 0) this.rockBalloon();
+
+		if (this.y > 600) Crafty.scene('EndLose');
+	},
+
+	rockBalloon: function () {
+		if (this.rockRight) {
+			if (this.rotation > -10) this.rotation -= 2 / this.lives;
+			else this.rockRight = false;
+		}
+		else {
+			if (this.rotation < 10) this.rotation += 2 / this.lives;
+			else this.rockRight = true;
+		}
 	},
 
 	attachSprites: function () {
