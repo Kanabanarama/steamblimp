@@ -59,12 +59,6 @@ Game = {
 				Crafty.sprite(50, 84, "assets/charakter_mit_karabiner.png", {
 					player_gun1: [0, 0]
 				});
-				Crafty.sprite(30, 14, "assets/weapo_cannon_resize.png", {
-					player_gun2: [0, 0]
-				});
-				Crafty.sprite(30, 14, "assets/kugel_resize.png", {
-					player_gun2_bullet: [0, 0]
-				});
 				Crafty.sprite(2000, 600, "assets/parallax00.png", {
 					background_layer_00: [0, 0]
 				});
@@ -106,15 +100,17 @@ Game = {
 		});
 
 		Crafty.scene('Main', function () {
+			Crafty.bind('KeyDown', function(e) {
+				if(e.key === Crafty.keys['ESC']) {
+					Crafty.pause();
+				}
+			});
+
 			Crafty.scene('Stage01');
 		});
 	},
 	gameLoop: function (e) {
 		//console.log(Crafty.frameTime);
 		Crafty.viewport.x -= Game.scrollspeed.x;
-
-		var entities = Crafty('*');
-
-		if (e.frame % 10 === 0) console.debug('Entities: ' + entities.length);
 	}
 };

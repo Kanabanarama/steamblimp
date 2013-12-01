@@ -15,7 +15,23 @@ Crafty.c('EnemyFlugdings', {
 		});
 	},
 
+	wiggleSpeed: 2,
+	wiggleMovement: 0,
+	wiggleDirection: 0,
 	fly: function () {
+		if(this.wiggleMovement <= 0 && Crafty.frame() % 20 === 0) {
+			var random = Math.random();
+			this.wiggleMovement = 30+random*30;
+			if(random > 0.5) {
+				this.wiggleDirection = 1;
+			} else {
+				this.wiggleDirection = -1;
+			}
+		}
+		if(this.wiggleMovement > 0) {
+			this.attr({y: this.y - this.wiggleSpeed*this.wiggleDirection });
+			this.wiggleMovement -= this.wiggleSpeed;
+		}
 		this.attr({x: this.x - 1 });
 	},
 
@@ -53,7 +69,7 @@ Crafty.c('EnemyFlugdings', {
 	attachSprites: function () {
 		this.base = Crafty.e('GameObject, enemy_flugdings');
 		this.weapon = Crafty.e('GameObject, enemy_flugdings_weapon');
-		var wings = this.wings = Crafty.e('GameObject, SpriteAnimation, enemy_flugdings_drive');
+		this.wings = Crafty.e('GameObject, SpriteAnimation, enemy_flugdings_drive');
 
 		this.base.attr({x: this.x, y: this.y, w: 60, h: 58});
 		this.weapon.attr({x: this.x, y: this.y, w: 60, h: 58});
