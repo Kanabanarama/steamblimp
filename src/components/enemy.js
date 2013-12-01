@@ -43,7 +43,7 @@ Crafty.c('Enemy', {
 // Random spread from origin
 			spread: 20,
 // How many frames should this last
-			duration: 7,
+			duration: 20,
 // Will draw squares instead of circle gradients
 			fastMode: false,
 			gravity: { x: 0, y: 0 },

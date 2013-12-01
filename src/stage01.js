@@ -1,10 +1,10 @@
-Crafty.scene('Stage01', function() {
+Crafty.scene('Stage01', function () {
 	Crafty.e('Parallax').background('assets/parallax00.png').parallax(0);
 	Crafty.e('Parallax').background('assets/parallax01.png').parallax(1);
 	Crafty.e('Parallax').background('assets/parallax02.png').parallax(1.5);
 	Crafty.e('Parallax').background('assets/parallax03.png').parallax(2);
 
-	Crafty.e('Player').attr({ x: 50, y: 50 });
+	Crafty.e('Player').attr({ x: 50, y: 500 });
 
 	var generateCoin = function (e) {
 		if (e.frame % 100 === 0) {
@@ -31,7 +31,6 @@ Crafty.scene('Stage01', function() {
 	var generateFlugdings = function(e) {
 		if(e.frame % 200 === 0) {
 			var rand = Math.random();
-			console.log(Crafty.viewport.x);
 			Crafty.e('EnemyFlugdings').attr({
 				x: -1*Crafty.viewport.x + 1000,
 				y: rand * 600 + (Crafty.viewport.y * -1)-250
