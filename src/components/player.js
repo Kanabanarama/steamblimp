@@ -22,7 +22,17 @@ Crafty.c('Player', {
 			Game.score.add(1);
 		});
 
+		this.onHit('Deadly', function (hits) {
+			this.enemyHit();
+		});
+
 		this.onHit('Enemy', function (hits) {
+			hits[0].obj.explode();
+			hits[0].obj.destroy();
+			this.enemyHit();
+		});
+
+		this.onHit('EnemyFlugzeug', function (hits) {
 			hits[0].obj.explode();
 			hits[0].obj.destroy();
 			this.enemyHit();

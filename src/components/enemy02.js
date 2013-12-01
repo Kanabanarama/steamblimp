@@ -12,6 +12,11 @@ Crafty.c('EnemyFlugdings', {
 		this.onHit('Bullet', function (hits) {
 			this.explode();
 			this.destroy();
+			if(this.gunfire) {
+				this.gunfire.destroy();
+				this.bullets.destroy();
+				this.mockBullet.destroy();
+			}
 		});
 	},
 
@@ -35,42 +40,72 @@ Crafty.c('EnemyFlugdings', {
 		this.attr({ x: this.x - 1 });
 	},
 
-	roundsToShoot: 50,
-	reloadTime: 2000,
+	roundsToShoot: 120,
+	roundsShot: 0,
+	reloadTime: 300,
 	reloadPause: 0,
 	shoot: function () {
-
-		return;
-		
 		if(this.reloadPause <= 0) {
-			console.log('shooting');
+			var gunfireOptions = {
+				maxParticles: 50,
+				size: 5,
+				sizeRandom: 4,
+				speed: 0.1,
+				speedRandom: 1.2,
+				lifeSpan: 5,
+				lifeSpanRandom: 7,
+				angle: 0,
+				angleRandom: 180,
+				startColour: [255, 131, 0, 1],
+				startColourRandom: [48, 50, 45, 0],
+				endColour: [245, 35, 0, 0],
+				endColourRandom: [60, 60, 60, 0],
+				sharpness: 20,
+				sharpnessRandom: 10,
+				spread: 0,
+				duration: this.roundsToShoot,
+				fastMode: true,
+				gravity: { x: -2, y: 0 },
+				jitter: 0
+			};
+			this.gunfire = Crafty.e("Particle").setParticles(gunfireOptions);
+
+			var bulletOptions = {
+				maxParticles: 50,
+				size: 2,
+				speed: 0.2,
+				lifeSpan: 6,
+				angle: 0,
+				startColour: [0, 0, 0, 1],
+				startColourRandom: [0, 0, 0, 1],
+				endColour: [0, 0, 0, 1],
+				endColourRandom: [0, 0, 0, 1],
+				sharpness: 20,
+				spread: 0,
+				duration: this.roundsToShoot,
+				fastMode: true,
+				gravity: { x: -5, y: 0 },
+				jitter: 0
+			};
+			this.bullets = Crafty.e("Particle").setParticles(bulletOptions);
+
+			this.mockBullet = Crafty.e('GameObject, Deadly').attr({ w: 500, h:12 });
+
+			this.roundsShot = 0;
 			this.reloadPause = this.reloadTime;
+		} else {
+			this.roundsShot++;
 		}
 
-		var options = {
-			maxParticles: 50,
-			size: 5,
-			sizeRandom: 4,
-			speed: 0.1,
-			speedRandom: 1.2,
-			lifeSpan: 5,
-			lifeSpanRandom: 7,
-			angle: 0,
-			angleRandom: 180,
-			startColour: [255, 131, 0, 1],
-			startColourRandom: [48, 50, 45, 0],
-			endColour: [245, 35, 0, 0],
-			endColourRandom: [60, 60, 60, 0],
-			sharpness: 20,
-			sharpnessRandom: 10,
-			spread: 0,
-			duration: -1,
-			fastMode: false,
-			gravity: { x: 0, y: -0.4 },
-			jitter: 0
-		};
+		if(this.roundsShot < this.roundsToShoot) { //this.gunfire) {
+			this.gunfire.attr({ x: this.weapon.x-4, y: this.weapon.y+14 });
+			this.bullets.attr({ x: this.weapon.x-4, y: this.weapon.y+14 });
+			this.mockBullet.attr({ x: this.weapon.x-500, y: this.weapon.y+10 });
+		} else {
+			this.mockBullet.removeComponent('Deadly');
+		}
 
-		//var firing = Crafty.e("Particle").setParticles(options).attr({x: this.x + 20, y: this.y + 35});
+		this.reloadPause--;
 	},
 
 	explode: function () {
