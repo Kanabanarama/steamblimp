@@ -1,6 +1,6 @@
-Crafty.c('Enemy', {
+Crafty.c('EnemyBomb', {
 	init: function () {
-		this.requires('GameObject, Collision');
+		this.requires('GameObject, Collision, Enemy');
 
 		this.attr({w: 28, h: 55});
 
