@@ -64,6 +64,9 @@ Game = {
 				Crafty.sprite(30, 14, "assets/weapo_cannon_resize.png", {
 					player_gun2: [0, 0]
 				});
+				Crafty.sprite(10, 10, "assets/kugel_resize.png", {
+					player_gun2_bullet: [0, 0]
+				});
 				Crafty.sprite(2000, 600, "assets/parallax00.png", {
 					background_layer_00: [0, 0]
 				});

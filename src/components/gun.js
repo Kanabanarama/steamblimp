@@ -42,9 +42,12 @@ Crafty.c('Gun_1', {
 				if (!bullet.withinViewPort()) {
 					bullet.unbind('EnterFrame', moveBullet);
 					bullet.destroy();
-					gun.wait = false;
 				}
 			};
+
+			gun.timeout(function () {
+				gun.wait = false;
+			}, 1500);
 
 			bullet.bind('EnterFrame', moveBullet);
 		}

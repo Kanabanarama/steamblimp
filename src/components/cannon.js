@@ -19,11 +19,9 @@ Crafty.c('Cannon', {
 		var gun = this;
 		if (!gun.wait) {
 			gun.wait = true;
-			var bullet = Crafty.e('GameObject, Color, Bullet, player_gun2_bullet');
+			var bullet = Crafty.e('GameObject, Bullet, player_gun2_bullet');
 
 			bullet.gun = gun;
-
-			bullet.color('black');
 
 			bullet.attr({
 				x: this.x + 20,
@@ -38,20 +36,23 @@ Crafty.c('Cannon', {
 
 			Crafty.audio.play('cannon');
 			var moveBullet = function () {
-				bullet.attr({ x: bullet.x + 13 , y: bullet.y + drift});
+				bullet.attr({ x: bullet.x + 13, y: bullet.y + drift});
 				drift = drift * 1.1;
 				if (!bullet.withinViewPort()) {
 					bullet.unbind('EnterFrame', moveBullet);
 					bullet.destroy();
-					gun.wait = false;
 				}
 			};
+
+			gun.timeout(function () {
+				gun.wait = false;
+			}, 2000);
 
 			bullet.bind('EnterFrame', moveBullet);
 		}
 	},
 
-	showSmoke: function(){
+	showSmoke: function () {
 		var options = {
 			maxParticles: 100,
 			size: 20,
