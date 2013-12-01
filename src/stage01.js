@@ -62,7 +62,7 @@ Crafty.scene('Stage01', function () {
 			y: Crafty.viewport.y/2
 		});
 	}
-	player.timeout(generateBoss, 600);
+	player.timeout(generateBoss, 60000);
 
 	Game.score = Crafty.e('Score').attr({x: 15, y: 30 });
 
