@@ -28,8 +28,8 @@ Crafty.c('Cannon', {
 			bullet.attr({
 				x: this.x + 20,
 				y: this.y,
-				w: 5,
-				h: 5
+				w: 10,
+				h: 10
 			});
 
 			gun.showSmoke();

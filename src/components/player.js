@@ -87,6 +87,9 @@ Crafty.c('Player', {
 	lastBurn: null,
 
 	addBurn: function () {
+
+		if (this.lastBurn === null) Crafty.audio.play('burning');
+
 		var options = {
 			maxParticles: 70,
 			size: 50 / this.lives,
@@ -136,7 +139,57 @@ Crafty.c('Player', {
 
 		if (e.frame % 3 === 0) this.rockBalloon();
 
-		if (this.y > 600) Crafty.scene('EndLose');
+		if (this.y > 600) {
+			if( !this.dead ) {
+				this.death();
+			}
+
+		}
+	},
+
+	dead: false,
+	death: function(){
+		this.dead = true;
+		var options = {
+			maxParticles: 150,
+			size: 30,
+			sizeRandom: 4,
+			speed: 1,
+			speedRandom: 1.2,
+// Lifespan in frames
+			lifeSpan: 7,
+			lifeSpanRandom: 2,
+// Angle is calculated clockwise: 12pm is 0deg, 3pm is 90deg etc.
+			angle: 90,
+			angleRandom: 270,
+			startColour: [255, 131, 0, 1],
+			startColourRandom: [100, 100, 45, 0],
+			endColour: [245, 35, 0, 0],
+			endColourRandom: [60, 60, 60, 0],
+// Only applies when fastMode is off, specifies how sharp the gradients are drawn
+			sharpness: 20,
+			sharpnessRandom: 10,
+// Random spread from origin
+			spread: 40,
+// How many frames should this last
+			duration: 40,
+// Will draw squares instead of circle gradients
+			fastMode: false,
+			gravity: { x: 0, y: -3 },
+// sensible values are 0-3
+			jitter: 3
+		};
+
+		Crafty.audio.play('explosion');
+	 Crafty.e("Particle").setParticles(options).attr({
+			x: this.x,
+			y: this.y
+		});
+
+		this.timeout(function(){
+			Crafty.scene('EndLose');
+		}, 1400);
+
 	},
 
 	rockBalloon: function () {
