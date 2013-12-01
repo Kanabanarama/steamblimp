@@ -1,5 +1,5 @@
 Crafty.c('Dubstep', {
-	firepower: 25,
+	firepower: 50,
 
 	init: function () {
 		var gun = this;
@@ -108,7 +108,6 @@ Crafty.c('Dubstep', {
 				var enemy = Crafty(enemies[i]);
 				if (enemy.damage) {
 					enemy.damage(gun.firepower);
-					//enemy.destroy();
 				}
 			}
 		};

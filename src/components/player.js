@@ -32,19 +32,16 @@ Crafty.c('Player', {
 
 		this.onHit('Enemy', function (hits) {
 			hits[0].obj.damage(50);
-			hits[0].obj.destroy();
 			this.enemyHit();
 		});
 
 		this.onHit('EnemyFlugzeug', function (hits) {
 			hits[0].obj.damage(50);
-			hits[0].obj.destroy();
 			this.enemyHit();
 		});
 
 		this.onHit('EnemyFlugdings', function (hits) {
 			hits[0].obj.damage(50);
-			hits[0].obj.destroy();
 			this.enemyHit();
 		});
 

@@ -15,6 +15,7 @@ Crafty.c('EnemyBossship', {
 
 	damage: function (damagePoints) {
 		this.health -= damagePoints;
+		console.log(this.health);
 		if(this.health <= 0) {
 			var options = {
 				maxParticles: 100,
@@ -40,7 +41,7 @@ Crafty.c('EnemyBossship', {
 			};
 			Crafty.audio.play('explosion');
 			this.destroy();
-			Crafty.scene('EndWon');
+			Crafty.scene('EndWin');
 			return Crafty.e("Particle").setParticles(options).attr({
 				x: this.x + 125,
 				y: this.y + 90
