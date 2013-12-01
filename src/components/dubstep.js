@@ -26,6 +26,7 @@ Crafty.c('Dubstep', {
 	},
 
 	charge: function () {
+		Crafty.audio.play('dubstep_charge');
 		var options = {
 			maxParticles: 300,
 			size: 3,
@@ -46,7 +47,7 @@ Crafty.c('Dubstep', {
 // Random spread from origin
 			spread: 10,
 // How many frames should this last
-			duration: 147,
+			duration: 250,
 // Will draw squares instead of circle gradients
 			fastMode: true,
 			gravity: { x: 0.05, y: 0 },
@@ -61,7 +62,7 @@ Crafty.c('Dubstep', {
 
 		this.timeout(function () {
 			this.shoot();
-		}, 3000);
+		}, 5000);
 	},
 	shoot: function () {
 		Crafty.audio.play('dubstep');

@@ -36,6 +36,7 @@ Game = {
 			Crafty.audio.add('lost', 'assets/lost.mp3');
 			Crafty.audio.add('laser', 'assets/laser.ogg');
 			Crafty.audio.add('minigun', 'assets/minigun.mp3', 0.1);
+			Crafty.audio.add('dubstep_charge', 'assets/dubstepcharge.ogg', 0.1);
 			Crafty.audio.add('dubstep', 'assets/dubstep.ogg');
 
 			Crafty.load([
