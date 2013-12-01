@@ -1,6 +1,6 @@
 Crafty.c('EnemyFlugdings', {
 	init: function () {
-		this.requires('GameObject, Collision');
+		this.requires('GameObject, Collision, Enemy');
 
 		this.attr({w: 60, h: 58});
 
