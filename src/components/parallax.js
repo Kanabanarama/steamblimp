@@ -10,7 +10,7 @@ Crafty.c('Parallax', {
 	parallax: function(speed) {
 		this.bind('EnterFrame', function() {
 			this.attr({ 'x': this._x-speed });
-		})
+		});
 		return this;
 	}
 });
