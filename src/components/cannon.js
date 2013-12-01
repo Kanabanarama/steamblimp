@@ -1,7 +1,7 @@
 Crafty.c('Cannon', {
 	width: 50,
 	height: 84,
-	firepower: 10,
+	firepower: 5,
 
 	init: function () {
 		var gun = this;

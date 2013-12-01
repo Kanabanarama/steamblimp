@@ -7,15 +7,10 @@ Crafty.c('EnemyBossship', {
 		this.attr({w: 250, h: 172});
 
 		this.attachSprites();
-
-		/*this.onHit('Bullet', function (hits) {
-			this.damage();
-		});*/
 	},
 
 	damage: function (damagePoints) {
 		this.health -= damagePoints;
-		console.log(this.health);
 		if(this.health <= 0) {
 			var options = {
 				maxParticles: 100,
