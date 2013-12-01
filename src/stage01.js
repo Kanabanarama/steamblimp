@@ -27,8 +27,18 @@ Crafty.scene('Stage01', function () {
 		}
 	};
 
-	var generateFlugdings = function(e) {
+	var generateFlugzeug = function(e) {
 		if(e.frame % 200 === 0) {
+			var rand = Math.random();
+			Crafty.e('EnemyFlugzeug').attr({
+				x: -1*Crafty.viewport.x + 1000,
+				y: rand * (500 + Crafty.viewport.y)
+			});
+		}
+	}
+
+	var generateFlugdings = function(e) {
+		if(e.frame % 300 === 0) {
 			var rand = Math.random();
 			Crafty.e('EnemyFlugdings').attr({
 				x: -1*Crafty.viewport.x + 1000,
@@ -39,6 +49,7 @@ Crafty.scene('Stage01', function () {
 
 	Crafty.bind('EnterFrame', generateCoin);
 	Crafty.bind('EnterFrame', generateBomb);
+	Crafty.bind('EnterFrame', generateFlugzeug);
 	Crafty.bind('EnterFrame', generateFlugdings);
 
 	Game.score = Crafty.e('Score').attr({x: 15, y: 30 });
