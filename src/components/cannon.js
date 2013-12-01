@@ -19,7 +19,11 @@ Crafty.c('Cannon', {
 		var gun = this;
 		if (!gun.wait) {
 			gun.wait = true;
-			var bullet = Crafty.e('GameObject, Bullet, cannon_ball_sprite');
+			var bullet = Crafty.e('GameObject, Bullet, Collision, cannon_ball_sprite');
+
+			bullet.onHit('Enemy', function (hits) {
+				hits[0].obj.explode();
+			});
 
 			bullet.gun = gun;
 

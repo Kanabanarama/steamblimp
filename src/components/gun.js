@@ -19,7 +19,12 @@ Crafty.c('Gun_1', {
 		var gun = this;
 		if (!gun.wait) {
 			gun.wait = true;
-			var bullet = Crafty.e('GameObject, Color, Bullet');
+			var bullet = Crafty.e('GameObject, Color, Bullet, Collision');
+
+			bullet.onHit('Enemy', function (hits) {
+				bullet.destroy();
+				hits[0].obj.explode();
+			});
 
 			bullet.gun = gun;
 
@@ -53,7 +58,7 @@ Crafty.c('Gun_1', {
 		}
 	},
 
-	showSmoke: function(){
+	showSmoke: function () {
 		var options = {
 			maxParticles: 150,
 			size: 10,
