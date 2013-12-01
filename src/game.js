@@ -36,6 +36,7 @@ Game = {
 			Crafty.audio.add('lost', 'assets/lost.mp3');
 			Crafty.audio.add('laser', 'assets/laser.ogg');
 			Crafty.audio.add('minigun', 'assets/minigun.mp3', 0.1);
+			Crafty.audio.add('dubstep', 'assets/dubstep.ogg');
 
 			Crafty.load([
 				'assets/step01_basket.png',
@@ -55,7 +56,8 @@ Game = {
 				'assets/cannon.png',
 				'assets/cannon_ball.png',
 				'assets/laser.png',
-				'assets/laser_shot.png'
+				'assets/laser_shot.png',
+				'assets/dubstep.png'
 			], function () {
 				Crafty.sprite(50, 84, 'assets/step01_basket.png', {
 					blimp_base_01: [0, 0]
@@ -77,6 +79,9 @@ Game = {
 				});
 				Crafty.sprite(26, 5, "assets/laser_shot.png", {
 					laser_shot_sprite: [0, 0]
+				});
+				Crafty.sprite(55, 30, "assets/dubstep.png", {
+					dubstep_sprite: [0, 0]
 				});
 				Crafty.sprite(2000, 600, "assets/parallax00.png", {
 					background_layer_00: [0, 0]
