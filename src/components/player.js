@@ -129,10 +129,6 @@ Crafty.c('Player', {
 
 	lastBurn: null,
 	updateDamage: function () {
-		//if (this.lives === 1) this.tween({rotation: 3}, -1);
-
-
-
 		if (this.lastBurn) this.lastBurn.destroy();
 
 		if(this.lives < 6) {

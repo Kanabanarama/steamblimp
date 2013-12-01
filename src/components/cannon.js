@@ -1,7 +1,4 @@
 Crafty.c('Cannon', {
-	width: 50,
-	height: 84,
-
 	init: function () {
 		var gun = this;
 		this.requires('GameObject, cannon_sprite');
@@ -24,8 +21,6 @@ Crafty.c('Cannon', {
 			bullet.onHit('Enemy', function (hits) {
 				hits[0].obj.explode();
 			});
-
-			bullet.gun = gun;
 
 			bullet.attr({
 				x: this.x + 20,

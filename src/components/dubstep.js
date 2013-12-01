@@ -16,12 +16,12 @@ Crafty.c('Dubstep', {
 	fire: function () {
 		var gun = this;
 		if (!gun.wait) {
-
+			gun.wait = true;
 			this.charge();
 
 			gun.timeout(function () {
 				gun.wait = false;
-			}, 5000);
+			}, 10000);
 		}
 	},
 
