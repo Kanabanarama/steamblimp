@@ -4,7 +4,7 @@ Crafty.c('Gun_1', {
 
 	init: function () {
 		var gun = this;
-		this.requires('GameObject, player_gun1');
+		this.requires('GameObject, gun_sprite');
 
 		this.attr({ w: 50, h: 84 });
 
@@ -47,7 +47,7 @@ Crafty.c('Gun_1', {
 
 			gun.timeout(function () {
 				gun.wait = false;
-			}, 1500);
+			}, 1000);
 
 			bullet.bind('EnterFrame', moveBullet);
 		}

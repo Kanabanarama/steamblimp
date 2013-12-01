@@ -4,7 +4,7 @@ Crafty.c('Cannon', {
 
 	init: function () {
 		var gun = this;
-		this.requires('GameObject, player_gun2');
+		this.requires('GameObject, cannon_sprite');
 
 		this.attr({ w: 30, h: 14 });
 
@@ -19,7 +19,7 @@ Crafty.c('Cannon', {
 		var gun = this;
 		if (!gun.wait) {
 			gun.wait = true;
-			var bullet = Crafty.e('GameObject, Bullet, player_gun2_bullet');
+			var bullet = Crafty.e('GameObject, Bullet, cannon_ball_sprite');
 
 			bullet.gun = gun;
 

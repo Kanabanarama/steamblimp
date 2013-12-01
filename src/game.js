@@ -59,13 +59,13 @@ Game = {
 					blimp_drive_01: [0, 0]
 				});
 				Crafty.sprite(50, 84, "assets/gun.png", {
-					player_gun1: [0, 0]
+					gun_sprite: [0, 0]
 				});
 				Crafty.sprite(30, 14, "assets/cannon.png", {
-					player_gun2: [0, 0]
+					cannon_sprite: [0, 0]
 				});
 				Crafty.sprite(10, 10, "assets/cannon_ball.png", {
-					player_gun2_bullet: [0, 0]
+					cannon_ball_sprite: [0, 0]
 				});
 				Crafty.sprite(2000, 600, "assets/parallax00.png", {
 					background_layer_00: [0, 0]
