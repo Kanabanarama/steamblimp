@@ -42,7 +42,10 @@ Game = {
 				'assets/parallax02.png',
 				'assets/parallax03.png',
 				'assets/enemy_balloon_resize.png',
-				'assets/enemy_bomb1_resize.png'
+				'assets/enemy_bomb1_resize.png',
+				'assets/enemy_flugdings_base.png',
+				'assets/enemy_flugdings_animation.png',
+				'assets/enemy_flugdings_gatling.png',
 			], function () {
 				Crafty.sprite(50, 84, 'assets/step01_basket.png', {
 					blimp_base_01: [0, 0]
@@ -50,12 +53,11 @@ Game = {
 				Crafty.sprite(50, 84, 'assets/step01_balloon.png', {
 					blimp_drive_01: [0, 0]
 				});
-				Crafty.sprite(2000, 600, "assets/parallax00.png", {
-					background_layer_00: [0, 0]
-				});
-
 				Crafty.sprite(50, 84, "assets/charakter_mit_karabiner.png", {
 					player_gun1: [0, 0]
+				});
+				Crafty.sprite(2000, 600, "assets/parallax00.png", {
+					background_layer_00: [0, 0]
 				});
 				Crafty.sprite(2000, 600, "assets/parallax01.png", {
 					background_layer_01: [0, 0]
@@ -74,6 +76,20 @@ Game = {
 				});
 				Crafty.sprite(28, 55, "assets/enemy_bomb1_resize.png", {
 					enemy_bomb: [0, 0]
+				});
+				Crafty.sprite(60, 58, "assets/enemy_flugdings_base.png", {
+					enemy_flugdings: [0, 0]
+				});
+				Crafty.sprite(60, 58, "assets/enemy_flugdings_gatling.png", {
+					enemy_flugdings_weapon: [0, 0]
+				});
+				Crafty.sprite(60, 58, "assets/enemy_flugdings_animation.png", {
+					enemy_flugdings_drive: [0, 0]
+					//enemy_flugdings_drive_02: [1, 0],
+					//enemy_flugdings_drive_03: [2, 0],
+					//enemy_flugdings_drive_04: [3, 0],
+					//enemy_flugdings_drive_05: [4, 0],
+					//enemy_flugdings_drive_06: [5, 0]
 				});
 
 				Crafty.scene('Main');
