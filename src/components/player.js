@@ -74,6 +74,12 @@ Crafty.c('Player', {
 				break;
 
 			case Crafty.keys['3']:
+				this.gun.destroy();
+				this.lastWeapon = e.key;
+				this.gun = Crafty
+					.e('Laser')
+					.attr({x: this.x + 20, y: this.y + 62});
+				this.attach(this.gun);
 				break;
 
 			case Crafty.keys['4']:
@@ -147,7 +153,7 @@ Crafty.c('Player', {
 	driftForward: function (e) {
 		this.attr({ 'x': this.x + 1 });
 
-		if (e.frame % 3 === 0) this.rockBalloon();
+		//if (e.frame % 3 === 0) this.rockBalloon();
 
 		if (this.y > 600) {
 			if( !this.dead ) {

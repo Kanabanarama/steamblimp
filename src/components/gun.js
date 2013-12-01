@@ -4,7 +4,7 @@ Crafty.c('Gun_1', {
 
 	init: function () {
 		var gun = this;
-		this.requires('GameObject, player_gun1');
+		this.requires('GameObject, gun_sprite');
 
 		this.attr({ w: 50, h: 84 });
 
@@ -19,7 +19,12 @@ Crafty.c('Gun_1', {
 		var gun = this;
 		if (!gun.wait) {
 			gun.wait = true;
-			var bullet = Crafty.e('GameObject, Color, Bullet');
+			var bullet = Crafty.e('GameObject, Color, Bullet, Collision');
+
+			bullet.onHit('Enemy', function (hits) {
+				bullet.destroy();
+				hits[0].obj.explode();
+			});
 
 			bullet.gun = gun;
 
@@ -42,15 +47,18 @@ Crafty.c('Gun_1', {
 				if (!bullet.withinViewPort()) {
 					bullet.unbind('EnterFrame', moveBullet);
 					bullet.destroy();
-					gun.wait = false;
 				}
 			};
+
+			gun.timeout(function () {
+				gun.wait = false;
+			}, 1000);
 
 			bullet.bind('EnterFrame', moveBullet);
 		}
 	},
 
-	showSmoke: function(){
+	showSmoke: function () {
 		var options = {
 			maxParticles: 150,
 			size: 10,

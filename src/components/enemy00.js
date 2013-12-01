@@ -1,6 +1,6 @@
-Crafty.c('Enemy', {
+Crafty.c('EnemyBomb', {
 	init: function () {
-		this.requires('GameObject, Collision');
+		this.requires('GameObject, Enemy');
 
 		this.attr({w: 28, h: 55});
 
@@ -8,12 +8,6 @@ Crafty.c('Enemy', {
 
 		this.bind('EnterFrame', this.fall);
 
-		this.onHit('Bullet', function (hits) {
-			this.explode();
-			this.destroy();
-			hits[0].obj.gun.wait = false;
-			hits[0].obj.destroy();
-		});
 
 		this.liveTime = 400 + Math.round(Math.random() * 500);
 	},
@@ -52,6 +46,9 @@ Crafty.c('Enemy', {
 		};
 
 		Crafty.audio.play('explosion');
+
+		this.destroy();
+
 		return Crafty.e("Particle").setParticles(options).attr({
 			x: this.x + 10,
 			y: this.y + 45

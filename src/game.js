@@ -34,12 +34,12 @@ Game = {
 			Crafty.audio.add('explosion', 'assets/explosion.ogg');
 			Crafty.audio.add('burning', 'assets/burning.ogg');
 			Crafty.audio.add('lost', 'assets/lost.mp3');
+			Crafty.audio.add('laser', 'assets/laser.ogg');
 
 			Crafty.load([
 				'assets/step01_basket.png',
 				'assets/step01_balloon.png',
 				'assets/damoney_resize.png',
-				'assets/charakter_mit_karabiner.png',
 				'assets/parallax00.png',
 				'assets/parallax01.png',
 				'assets/parallax02.png',
@@ -49,8 +49,11 @@ Game = {
 				'assets/enemy_flugdings_base.png',
 				'assets/enemy_flugdings_animation.png',
 				'assets/enemy_flugdings_gatling.png',
-				'assets/weapo_cannon_resize.png',
-				'assets/kugel_resize.png'
+				'assets/gun.png',
+				'assets/cannon.png',
+				'assets/cannon_ball.png',
+				'assets/laser.png',
+				'assets/laser_shot.png'
 			], function () {
 				Crafty.sprite(50, 84, 'assets/step01_basket.png', {
 					blimp_base_01: [0, 0]
@@ -58,11 +61,20 @@ Game = {
 				Crafty.sprite(50, 84, 'assets/step01_balloon.png', {
 					blimp_drive_01: [0, 0]
 				});
-				Crafty.sprite(50, 84, "assets/charakter_mit_karabiner.png", {
-					player_gun1: [0, 0]
+				Crafty.sprite(50, 84, "assets/gun.png", {
+					gun_sprite: [0, 0]
 				});
-				Crafty.sprite(30, 14, "assets/weapo_cannon_resize.png", {
-					player_gun2: [0, 0]
+				Crafty.sprite(30, 14, "assets/cannon.png", {
+					cannon_sprite: [0, 0]
+				});
+				Crafty.sprite(10, 10, "assets/cannon_ball.png", {
+					cannon_ball_sprite: [0, 0]
+				});
+				Crafty.sprite(35, 17, "assets/laser.png", {
+					laser_sprite: [0, 0]
+				});
+				Crafty.sprite(26, 5, "assets/laser_shot.png", {
+					laser_shot_sprite: [0, 0]
 				});
 				Crafty.sprite(2000, 600, "assets/parallax00.png", {
 					background_layer_00: [0, 0]
@@ -100,8 +112,8 @@ Game = {
 		});
 
 		Crafty.scene('Main', function () {
-			Crafty.bind('KeyDown', function(e) {
-				if(e.key === Crafty.keys['ESC']) {
+			Crafty.bind('KeyDown', function (e) {
+				if (e.key === Crafty.keys['ESC']) {
 					Crafty.pause();
 				}
 			});
