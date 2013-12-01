@@ -1,4 +1,6 @@
 Crafty.c('EnemyFlugdings', {
+	health: 20,
+
 	init: function () {
 		this.requires('GameObject, Collision, Enemy');
 
@@ -8,16 +10,6 @@ Crafty.c('EnemyFlugdings', {
 
 		this.bind('EnterFrame', this.fly);
 		this.bind('EnterFrame', this.shoot);
-
-		this.onHit('Bullet', function (hits) {
-			this.explode();
-			this.destroy();
-			if (this.gunfire) {
-				this.gunfire.destroy();
-				this.bullets.destroy();
-				this.mockBullet.destroy();
-			}
-		});
 	},
 
 	wiggleSpeed: 2,
@@ -116,7 +108,7 @@ Crafty.c('EnemyFlugdings', {
 				h: 30
 			});
 
-			hitbox.explode = hitbox.destroy;
+			hitbox.damage = hitbox.destroy;
 
 			this.attach(hitbox);
 
@@ -130,35 +122,44 @@ Crafty.c('EnemyFlugdings', {
 		}
 	},
 
-	explode: function () {
-		var options = {
-			maxParticles: 150,
-			size: 20,
-			sizeRandom: 4,
-			speed: 3,
-			speedRandom: 1.2,
-			lifeSpan: 7,
-			lifeSpanRandom: 2,
-			angle: 0,
-			angleRandom: 180,
-			startColour: [255, 131, 0, 1],
-			startColourRandom: [100, 100, 45, 0],
-			endColour: [245, 35, 0, 0],
-			endColourRandom: [60, 60, 60, 0],
-			sharpness: 20,
-			sharpnessRandom: 10,
-			spread: 20,
-			duration: 7,
-			fastMode: false,
-			gravity: { x: 0, y: 0 },
-			jitter: 2
-		};
+	damage: function (damagePoints) {
+		this.health -= damagePoints;
+		if(this.health <= 0) {
+			if (this.gunfire) {
+				this.gunfire.destroy();
+				this.bullets.destroy();
+				this.mockBullet.destroy();
+			}
+			var options = {
+				maxParticles: 150,
+				size: 20,
+				sizeRandom: 4,
+				speed: 3,
+				speedRandom: 1.2,
+				lifeSpan: 7,
+				lifeSpanRandom: 2,
+				angle: 0,
+				angleRandom: 180,
+				startColour: [255, 131, 0, 1],
+				startColourRandom: [100, 100, 45, 0],
+				endColour: [245, 35, 0, 0],
+				endColourRandom: [60, 60, 60, 0],
+				sharpness: 20,
+				sharpnessRandom: 10,
+				spread: 20,
+				duration: 7,
+				fastMode: false,
+				gravity: { x: 0, y: 0 },
+				jitter: 2
+			};
 
-		Crafty.audio.play('explosion');
-		return Crafty.e("Particle").setParticles(options).attr({
-			x: this.x + 10,
-			y: this.y + 45
-		});
+			Crafty.audio.play('explosion');
+			this.destroy();
+			return Crafty.e("Particle").setParticles(options).attr({
+				x: this.x + 10,
+				y: this.y + 45
+			});
+		}
 	},
 
 	attachSprites: function () {

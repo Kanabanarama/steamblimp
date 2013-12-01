@@ -1,6 +1,7 @@
 Crafty.c('Gun_1', {
 	width: 50,
 	height: 84,
+	firepower: 1,
 
 	init: function () {
 		var gun = this;
@@ -23,7 +24,7 @@ Crafty.c('Gun_1', {
 
 			bullet.onHit('Enemy', function (hits) {
 				bullet.destroy();
-				hits[0].obj.explode();
+				hits[0].obj.damage(gun.firepower);
 			});
 
 			bullet.gun = gun;

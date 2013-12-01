@@ -1,4 +1,6 @@
 Crafty.c('EnemyBomb', {
+	health: 1,
+
 	init: function () {
 		this.requires('GameObject, Enemy');
 
@@ -14,45 +16,48 @@ Crafty.c('EnemyBomb', {
 
 	liveTime: 500,
 
-	explode: function () {
-		var options = {
-			maxParticles: 150,
-			size: 20,
-			sizeRandom: 4,
-			speed: 3,
-			speedRandom: 1.2,
-// Lifespan in frames
-			lifeSpan: 7,
-			lifeSpanRandom: 2,
-// Angle is calculated clockwise: 12pm is 0deg, 3pm is 90deg etc.
-			angle: 0,
-			angleRandom: 180,
-			startColour: [255, 131, 0, 1],
-			startColourRandom: [100, 100, 45, 0],
-			endColour: [245, 35, 0, 0],
-			endColourRandom: [60, 60, 60, 0],
-// Only applies when fastMode is off, specifies how sharp the gradients are drawn
-			sharpness: 20,
-			sharpnessRandom: 10,
-// Random spread from origin
-			spread: 20,
-// How many frames should this last
-			duration: 20,
-// Will draw squares instead of circle gradients
-			fastMode: false,
-			gravity: { x: 0, y: 0 },
-// sensible values are 0-3
-			jitter: 2
-		};
+	damage: function (damagePoints) {
+		this.health -= damagePoints;
+		if(this.health <= 0) {
+			var options = {
+				maxParticles: 150,
+				size: 20,
+				sizeRandom: 4,
+				speed: 3,
+				speedRandom: 1.2,
+	// Lifespan in frames
+				lifeSpan: 7,
+				lifeSpanRandom: 2,
+	// Angle is calculated clockwise: 12pm is 0deg, 3pm is 90deg etc.
+				angle: 0,
+				angleRandom: 180,
+				startColour: [255, 131, 0, 1],
+				startColourRandom: [100, 100, 45, 0],
+				endColour: [245, 35, 0, 0],
+				endColourRandom: [60, 60, 60, 0],
+	// Only applies when fastMode is off, specifies how sharp the gradients are drawn
+				sharpness: 20,
+				sharpnessRandom: 10,
+	// Random spread from origin
+				spread: 20,
+	// How many frames should this last
+				duration: 20,
+	// Will draw squares instead of circle gradients
+				fastMode: false,
+				gravity: { x: 0, y: 0 },
+	// sensible values are 0-3
+				jitter: 2
+			};
 
-		Crafty.audio.play('explosion');
+			Crafty.audio.play('explosion');
 
-		this.destroy();
+			this.destroy();
 
-		return Crafty.e("Particle").setParticles(options).attr({
-			x: this.x + 10,
-			y: this.y + 45
-		});
+			return Crafty.e("Particle").setParticles(options).attr({
+				x: this.x + 10,
+				y: this.y + 45
+			});
+		}
 	},
 
 	fall: function (e) {
@@ -60,7 +65,7 @@ Crafty.c('EnemyBomb', {
 		this.liveTime--;
 
 		if (this.liveTime === 0) {
-			this.explode();
+			this.damage();
 			this.destroy();
 		}
 

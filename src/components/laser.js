@@ -1,4 +1,6 @@
 Crafty.c('Laser', {
+	firepower: 5,
+
 	init: function () {
 		var gun = this;
 		this.requires('GameObject, laser_sprite');
@@ -21,7 +23,9 @@ Crafty.c('Laser', {
 
 			bullet.onHit('Enemy', function (hits) {
 				bullet.destroy();
-				hits[0].obj.explode();
+				if(hits[0].obj.damage) {
+					hits[0].obj.damage(gun.firepower);
+				}
 			});
 
 			bullet.attr({

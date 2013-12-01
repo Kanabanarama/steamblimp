@@ -1,28 +1,25 @@
-Crafty.c('EnemyFlugzeug', {
-	health: 5,
+Crafty.c('EnemyBossship', {
+	health: 250,
 
 	init: function () {
 		this.requires('GameObject, Collision, Enemy');
 
-		this.attr({w: 60, h: 39});
+		this.attr({w: 250, h: 172});
 
 		this.attachSprites();
 
-		this.bind('EnterFrame', this.fly);
-	},
-
-	fly: function () {
-		this.attr({ x: this.x - 5 });
+		/*this.onHit('Bullet', function (hits) {
+			this.damage();
+		});*/
 	},
 
 	damage: function (damagePoints) {
 		this.health -= damagePoints;
-		console.log(this.health);
 		if(this.health <= 0) {
 			var options = {
-				maxParticles: 150,
-				size: 20,
-				sizeRandom: 4,
+				maxParticles: 100,
+				size: 40,
+				sizeRandom: 10,
 				speed: 3,
 				speedRandom: 1.2,
 				lifeSpan: 7,
@@ -41,19 +38,27 @@ Crafty.c('EnemyFlugzeug', {
 				gravity: { x: 0, y: 0 },
 				jitter: 2
 			};
-
 			Crafty.audio.play('explosion');
 			this.destroy();
 			return Crafty.e("Particle").setParticles(options).attr({
-				x: this.x + 10,
-				y: this.y + 45
+				x: this.x + 125,
+				y: this.y + 90
 			});
 		}
 	},
 
 	attachSprites: function () {
-		this.base = Crafty.e('GameObject, enemy_flugzeug');
-		this.base.attr({x: this.x, y: this.y, w: 60, h: 39});
+		this.base = Crafty.e('GameObject, boss_ship_base');
+		this.wings = Crafty.e('GameObject, SpriteAnimation, boss_ship_drive');
+
+		this.base.attr({x: this.x, y: this.y, w: 250, h: 172});
+		this.wings.attr({x: this.x, y: this.y, w: 250, h: 172});
+
+		this.wings
+			.animate('fly', 0, 0, 3)
+			.animate('fly', 30, -1);
+
 		this.attach(this.base);
+		this.attach(this.wings);
 	}
 });

@@ -1,4 +1,5 @@
 Crafty.c('Dubstep', {
+	firepower: 25,
 
 	init: function () {
 		var gun = this;
@@ -65,6 +66,7 @@ Crafty.c('Dubstep', {
 		}, 5000);
 	},
 	shoot: function () {
+		gun = this;
 		Crafty.audio.play('dubstep');
 		var options = {
 			maxParticles: 2000,
@@ -104,9 +106,9 @@ Crafty.c('Dubstep', {
 
 			for (i in enemies) {
 				var enemy = Crafty(enemies[i]);
-				if (enemy.explode) {
-					enemy.explode();
-					enemy.destroy();
+				if (enemy.damage) {
+					enemy.damage(gun.firepower);
+					//enemy.destroy();
 				}
 			}
 		};

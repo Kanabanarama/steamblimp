@@ -36,7 +36,7 @@ Crafty.scene('Stage01', function () {
 	};
 
 	var generateFlugzeug = function(e) {
-		if(e.frame % 200 === 0) {
+		if(e.frame % 300 === 0) {
 			var rand = Math.random();
 			Crafty.e('EnemyFlugzeug').attr({
 				x: -1*Crafty.viewport.x + 1000,
@@ -46,7 +46,7 @@ Crafty.scene('Stage01', function () {
 	}
 
 	var generateFlugdings = function(e) {
-		if(e.frame % 300 === 0) {
+		if(e.frame % 500 === 0) {
 			var rand = Math.random();
 			Crafty.e('EnemyFlugdings').attr({
 				x: -1*Crafty.viewport.x + 1000,
@@ -54,6 +54,13 @@ Crafty.scene('Stage01', function () {
 			});
 		}
 	}
+
+	Crafty.e('GameObject').timeout(function() {
+		Crafty.e('EnemyBossship').attr({
+			x: -1*Crafty.viewport.x + 1000,
+			y: Crafty.viewport.y/2
+		});
+	}, 60000);
 
 	Crafty.bind('EnterFrame', generateCoin);
 	Crafty.bind('EnterFrame', generateHealth);
