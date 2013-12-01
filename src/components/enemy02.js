@@ -27,7 +27,6 @@ Crafty.c('EnemyFlugdings', {
 			} else {
 				this.wiggleDirection = -1;
 			}
-			console.log('rnd movement', this.wiggleMovement, this.wiggleDirection);
 		}
 		if(this.wiggleMovement > 0) {
 			this.attr({y: this.y - this.wiggleSpeed*this.wiggleDirection });
