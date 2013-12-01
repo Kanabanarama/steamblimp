@@ -27,6 +27,12 @@ Crafty.c('Player', {
 			hits[0].obj.destroy();
 			this.enemyHit();
 		});
+
+		this.onHit('EnemyFlugdings', function (hits) {
+			hits[0].obj.explode();
+			hits[0].obj.destroy();
+			this.enemyHit();
+		});
 	},
 
 	enemyHit: function () {

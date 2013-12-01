@@ -28,8 +28,19 @@ Crafty.scene('Stage01', function () {
 		}
 	};
 
+	var generateFlugdings = function(e) {
+		if(e.frame % 200 === 0) {
+			var rand = Math.random();
+			Crafty.e('EnemyFlugdings').attr({
+				x: -1*Crafty.viewport.x + 1000,
+				y: rand * 600 + (Crafty.viewport.y * -1)-250
+			});
+		}
+	}
+
 	Crafty.bind('EnterFrame', generateCoin);
 	Crafty.bind('EnterFrame', generateBomb);
+	Crafty.bind('EnterFrame', generateFlugdings);
 
 	Game.score = Crafty.e('Score').attr({x: 15, y: 30 });
 
