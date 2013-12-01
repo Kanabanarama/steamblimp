@@ -53,7 +53,7 @@ Crafty.c('EnemyFlugdings', {
 	attachSprites: function () {
 		this.base = Crafty.e('GameObject, enemy_flugdings');
 		this.weapon = Crafty.e('GameObject, enemy_flugdings_weapon');
-		var wings = this.wings = Crafty.e('GameObject, SpriteAnimation, enemy_flugdings_drive');
+		this.wings = Crafty.e('GameObject, SpriteAnimation, enemy_flugdings_drive');
 
 		this.base.attr({x: this.x, y: this.y, w: 60, h: 58});
 		this.weapon.attr({x: this.x, y: this.y, w: 60, h: 58});

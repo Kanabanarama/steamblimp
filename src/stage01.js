@@ -2,7 +2,6 @@ Crafty.scene('Stage01', function () {
 	Crafty.e('Parallax').background('assets/parallax00.png').parallax(0);
 	Crafty.e('Parallax').background('assets/parallax01.png').parallax(1);
 	Crafty.e('Parallax').background('assets/parallax02.png').parallax(1.5);
-	Crafty.e('Parallax').background('assets/parallax03.png').parallax(2);
 
 	Crafty.e('Player').attr({ x: 50, y: 500 });
 
