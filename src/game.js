@@ -41,7 +41,6 @@ Game = {
 				'assets/parallax00.png',
 				'assets/parallax01.png',
 				'assets/parallax02.png',
-				'assets/parallax03.png',
 				'assets/enemy_balloon_resize.png',
 				'assets/enemy_bomb1_resize.png',
 				'assets/enemy_flugzeug.png',
@@ -68,9 +67,6 @@ Game = {
 				});
 				Crafty.sprite(2000, 600, "assets/parallax02.png", {
 					background_layer_02: [0, 0]
-				});
-				Crafty.sprite(2000, 600, "assets/parallax03.png", {
-					background_layer_03: [0, 0]
 				});
 				Crafty.sprite(20, 20, "assets/damoney_resize.png", {
 					coin_cog: [0, 0]
