@@ -88,11 +88,6 @@ Game = {
 				});
 				Crafty.sprite(60, 58, "assets/enemy_flugdings_animation.png", {
 					enemy_flugdings_drive: [0, 0]
-					//enemy_flugdings_drive_02: [1, 0],
-					//enemy_flugdings_drive_03: [2, 0],
-					//enemy_flugdings_drive_04: [3, 0],
-					//enemy_flugdings_drive_05: [4, 0],
-					//enemy_flugdings_drive_06: [5, 0]
 				});
 
 				Crafty.scene('Main');
@@ -110,7 +105,6 @@ Game = {
 		});
 	},
 	gameLoop: function (e) {
-		//console.log(Crafty.frameTime);
 		Crafty.viewport.x -= Game.scrollspeed.x;
 	}
 };

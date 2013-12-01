@@ -7,7 +7,7 @@ Crafty.c('EnemyFlugdings', {
 		this.attachSprites();
 
 		this.bind('EnterFrame', this.fly);
-		this.bind('EnterFrame', this.animate);
+		this.bind('EnterFrame', this.shoot);
 
 		this.onHit('Bullet', function (hits) {
 			this.explode();
@@ -33,6 +33,44 @@ Crafty.c('EnemyFlugdings', {
 			this.wiggleMovement -= this.wiggleSpeed;
 		}
 		this.attr({ x: this.x - 1 });
+	},
+
+	roundsToShoot: 50,
+	reloadTime: 2000,
+	reloadPause: 0,
+	shoot: function () {
+
+		return;
+		
+		if(this.reloadPause <= 0) {
+			console.log('shooting');
+			this.reloadPause = this.reloadTime;
+		}
+
+		var options = {
+			maxParticles: 50,
+			size: 5,
+			sizeRandom: 4,
+			speed: 0.1,
+			speedRandom: 1.2,
+			lifeSpan: 5,
+			lifeSpanRandom: 7,
+			angle: 0,
+			angleRandom: 180,
+			startColour: [255, 131, 0, 1],
+			startColourRandom: [48, 50, 45, 0],
+			endColour: [245, 35, 0, 0],
+			endColourRandom: [60, 60, 60, 0],
+			sharpness: 20,
+			sharpnessRandom: 10,
+			spread: 0,
+			duration: -1,
+			fastMode: false,
+			gravity: { x: 0, y: -0.4 },
+			jitter: 0
+		};
+
+		//var firing = Crafty.e("Particle").setParticles(options).attr({x: this.x + 20, y: this.y + 35});
 	},
 
 	explode: function () {
