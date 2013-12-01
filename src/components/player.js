@@ -3,7 +3,7 @@ Crafty.c('Player', {
 	height: 84,
 	coins: 0,
 
-	lives: 8,
+	lives: 6,
 
 	init: function () {
 		this.requires('GameObject, Controls, Collision, Tween');
@@ -33,6 +33,43 @@ Crafty.c('Player', {
 			hits[0].obj.destroy();
 			this.enemyHit();
 		});
+
+		this.bind('KeyDown', this.switchWeapon);
+	},
+
+	lastWeapon: null,
+
+	switchWeapon: function (e) {
+
+		if (e.key == this.lastWeapon) return;
+
+		switch (e.key) {
+
+			case Crafty.keys['1']:
+				this.gun.destroy();
+				this.lastWeapon = e.key;
+				this.gun = Crafty
+					.e('Gun_1')
+					.attr({x: this.x, y: this.y});
+				this.attach(this.gun);
+				break;
+
+			case Crafty.keys['2']:
+				this.gun.destroy();
+				this.lastWeapon = e.key;
+				this.gun = Crafty
+					.e('Cannon')
+					.attr({x: this.x + 22, y: this.y + 66});
+				this.attach(this.gun);
+				break;
+
+			case Crafty.keys['3']:
+				break;
+
+			case Crafty.keys['4']:
+				break;
+		}
+
 	},
 
 	enemyHit: function () {
@@ -52,7 +89,7 @@ Crafty.c('Player', {
 	addBurn: function () {
 		var options = {
 			maxParticles: 70,
-			size: 40 / this.lives,
+			size: 50 / this.lives,
 			sizeRandom: 4,
 			speed: 0.2,
 			speedRandom: 0,
@@ -104,19 +141,16 @@ Crafty.c('Player', {
 
 	rockBalloon: function () {
 		if (this.rockRight) {
-			if (this.rotation > -10) this.rotation -= 2 / this.lives;
+			if (this.rotation > -5) this.rotation -= 1 / this.lives;
 			else this.rockRight = false;
 		}
 		else {
-			if (this.rotation < 10) this.rotation += 2 / this.lives;
+			if (this.rotation < 5) this.rotation += 1 / this.lives;
 			else this.rockRight = true;
 		}
 	},
 
 	attachSprites: function () {
-		this.gun = Crafty
-			.e('Gun_1')
-			.attr({x: this.x + 6, y: this.y});
 
 		this.base = Crafty
 			.e('2D, Canvas, blimp_base_01')
@@ -125,6 +159,10 @@ Crafty.c('Player', {
 		this.drive = Crafty
 			.e('2D, Canvas, blimp_drive_01')
 			.attr({x: this.x, y: this.y, w: this.width, h: this.height});
+
+		this.gun = Crafty
+			.e('Gun_1')
+			.attr({x: this.x, y: this.y});
 
 		this.attach(this.drive);
 		this.attach(this.base);

@@ -3,7 +3,7 @@ Crafty.scene('Stage01', function () {
 	Crafty.e('Parallax').background('assets/parallax01.png').parallax(1);
 	Crafty.e('Parallax').background('assets/parallax02.png').parallax(1.5);
 
-	Crafty.e('Player').attr({ x: 50, y: 500 });
+	Crafty.e('Player').attr({ x: 100, y: 200 });
 
 	var generateCoin = function (e) {
 		if (e.frame % 100 === 0) {
@@ -18,7 +18,7 @@ Crafty.scene('Stage01', function () {
 	};
 
 	var generateBomb = function (e) {
-		if (e.frame % 100 === 0) {
+		if (e.frame % 200 === 0) {
 			var rand = Math.random();
 			Crafty.e('Enemy').attr({
 				x: rand * 1200 + (Crafty.viewport.x * -1),

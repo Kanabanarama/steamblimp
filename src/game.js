@@ -30,6 +30,7 @@ Game = {
 
 			Crafty.audio.add('coin_pickup', 'assets/coin_pickup.ogg');
 			Crafty.audio.add('gun1_shot', 'assets/gun1_shot.ogg');
+			Crafty.audio.add('cannon', 'assets/cannon.ogg');
 			Crafty.audio.add('explosion', 'assets/explosion.ogg');
 
 			Crafty.load([
@@ -37,12 +38,18 @@ Game = {
 				'assets/step01_balloon.png',
 				'assets/damoney_resize.png',
 				'assets/charakter_mit_karabiner.png',
+				'assets/parallax00.png',
+				'assets/parallax01.png',
+				'assets/parallax02.png',
+				'assets/parallax03.png',
 				'assets/enemy_balloon_resize.png',
 				'assets/enemy_bomb1_resize.png',
 				'assets/enemy_flugzeug.png',
 				'assets/enemy_flugdings_base.png',
 				'assets/enemy_flugdings_animation.png',
 				'assets/enemy_flugdings_gatling.png',
+				'assets/weapo_cannon_resize.png',
+				'assets/kugel_resize.png'
 			], function () {
 				Crafty.sprite(50, 84, 'assets/step01_basket.png', {
 					blimp_base_01: [0, 0]
@@ -52,6 +59,18 @@ Game = {
 				});
 				Crafty.sprite(50, 84, "assets/charakter_mit_karabiner.png", {
 					player_gun1: [0, 0]
+				});
+				Crafty.sprite(2000, 600, "assets/parallax00.png", {
+					background_layer_00: [0, 0]
+				});
+				Crafty.sprite(2000, 600, "assets/parallax01.png", {
+					background_layer_01: [0, 0]
+				});
+				Crafty.sprite(2000, 600, "assets/parallax02.png", {
+					background_layer_02: [0, 0]
+				});
+				Crafty.sprite(2000, 600, "assets/parallax03.png", {
+					background_layer_03: [0, 0]
 				});
 				Crafty.sprite(20, 20, "assets/damoney_resize.png", {
 					coin_cog: [0, 0]
@@ -73,6 +92,11 @@ Game = {
 				});
 				Crafty.sprite(60, 58, "assets/enemy_flugdings_animation.png", {
 					enemy_flugdings_drive: [0, 0]
+					//enemy_flugdings_drive_02: [1, 0],
+					//enemy_flugdings_drive_03: [2, 0],
+					//enemy_flugdings_drive_04: [3, 0],
+					//enemy_flugdings_drive_05: [4, 0],
+					//enemy_flugdings_drive_06: [5, 0]
 				});
 
 				Crafty.scene('Main');
@@ -90,6 +114,7 @@ Game = {
 		});
 	},
 	gameLoop: function (e) {
+		//console.log(Crafty.frameTime);
 		Crafty.viewport.x -= Game.scrollspeed.x;
 	}
 };

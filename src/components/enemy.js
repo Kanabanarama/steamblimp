@@ -58,7 +58,7 @@ Crafty.c('Enemy', {
 		});
 	},
 
-	fall: function () {
+	fall: function (e) {
 		this.attr({y: this.y + 1 });
 		this.liveTime--;
 
@@ -66,6 +66,8 @@ Crafty.c('Enemy', {
 			this.explode();
 			this.destroy();
 		}
+
+		if (this.x < Crafty.viewport.x) this.destroy();
 	},
 
 	attachSprites: function () {
