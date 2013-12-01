@@ -3,7 +3,7 @@ Crafty.c('Player', {
 	height: 84,
 	coins: 0,
 
-	lives: 8,
+	lives: 6,
 
 	init: function () {
 		this.requires('GameObject, Controls, Collision, Tween');
@@ -46,7 +46,7 @@ Crafty.c('Player', {
 	addBurn: function () {
 		var options = {
 			maxParticles: 70,
-			size: 40 / this.lives,
+			size: 50 / this.lives,
 			sizeRandom: 4,
 			speed: 0.2,
 			speedRandom: 0,

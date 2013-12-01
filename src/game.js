@@ -87,5 +87,9 @@ Game = {
 	gameLoop: function (e) {
 		//console.log(Crafty.frameTime);
 		Crafty.viewport.x -= Game.scrollspeed.x;
+
+		var entities = Crafty('*');
+
+		if (e.frame % 10 === 0) console.debug('Entities: ' + entities.length);
 	}
 };

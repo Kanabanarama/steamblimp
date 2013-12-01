@@ -19,7 +19,7 @@ Crafty.scene('Stage01', function () {
 	};
 
 	var generateBomb = function (e) {
-		if (e.frame % 100 === 0) {
+		if (e.frame % 200 === 0) {
 			var rand = Math.random();
 			Crafty.e('Enemy').attr({
 				x: rand * 1200 + (Crafty.viewport.x * -1),
