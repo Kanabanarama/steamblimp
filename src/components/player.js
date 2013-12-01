@@ -23,7 +23,7 @@ Crafty.c('Player', {
 		});
 
 		this.onHit('Health', function () {
-			this.lives = 6;
+			this.aquireHealth(6);
 		});
 
 		this.onHit('Deadly', function (hits) {
@@ -47,6 +47,8 @@ Crafty.c('Player', {
 			hits[0].obj.destroy();
 			this.enemyHit();
 		});
+
+		this.applyDownDrift();
 
 		this.bind('KeyDown', this.switchWeapon);
 	},
@@ -104,62 +106,70 @@ Crafty.c('Player', {
 
 	enemyHit: function () {
 		this.lives--;
+		this.downDrift++;
+		this.updateDamage();
+	},
 
-		this.addBurn();
-		this.toggleComponent('Fourway');
+	aquireHealth: function(health) {
+		this.lives = health;
+		this.downDrift -= health;
+		if(this.downDrift < 0) {
+			this.downDrift = 0;
+		}
+		this.updateDamage();
+	},
+
+	downDrift: 0,
+	applyDownDrift: function() {
+		var self = this;
 		this.bind('EnterFrame', function () {
-			this.attr({y: this.y + 1});
+			this.attr({ y: this.y + self.downDrift });
 		});
-
-		if (this.lives === 1) this.tween({rotation: 3}, -1);
 	},
 
 	lastBurn: null,
+	updateDamage: function () {
+		//if (this.lives === 1) this.tween({rotation: 3}, -1);
 
-	addBurn: function () {
 
-		if (this.lastBurn === null) Crafty.audio.play('burning');
-
-		var options = {
-			maxParticles: 70,
-			size: 50 / this.lives,
-			sizeRandom: 4,
-			speed: 0.2,
-			speedRandom: 0,
-// Lifespan in frames
-			lifeSpan: 20,
-			lifeSpanRandom: 7,
-// Angle is calculated clockwise: 12pm is 0deg, 3pm is 90deg etc.
-			angle: 0,
-			angleRandom: 0,
-			startColour: [255, 131, 0, 1],
-			startColourRandom: [48, 50, 45, 0],
-			endColour: [245, 35, 0, 0],
-			endColourRandom: [60, 60, 60, 0],
-// Only applies when fastMode is off, specifies how sharp the gradients are drawn
-			sharpness: 20,
-			sharpnessRandom: 10,
-// Random spread from origin
-			spread: 4,
-// How many frames should this last
-			duration: -1,
-// Will draw squares instead of circle gradients
-			fastMode: false,
-			gravity: { x: 0, y: -0.4 },
-// sensible values are 0-3
-			jitter: 1
-		};
 
 		if (this.lastBurn) this.lastBurn.destroy();
 
-		this.lastBurn = Crafty.e("2D,Canvas,Particles").particles(options);
+		if(this.lives < 6) {
+			if (this.lastBurn === null) Crafty.audio.play('burning');
 
-		var x = this.x + (Math.random() * 30);
-		var y = this.y + (Math.random() * 20);
+			var options = {
+				maxParticles: 70,
+				size: 50 / this.lives,
+				sizeRandom: 4,
+				speed: 0.2,
+				speedRandom: 0,
+				lifeSpan: 20,
+				lifeSpanRandom: 7,
+				angle: 0,
+				angleRandom: 0,
+				startColour: [255, 131, 0, 1],
+				startColourRandom: [48, 50, 45, 0],
+				endColour: [245, 35, 0, 0],
+				endColourRandom: [60, 60, 60, 0],
+				sharpness: 20,
+				sharpnessRandom: 10,
+				spread: 4,
+				duration: -1,
+				fastMode: false,
+				gravity: { x: 0, y: -0.4 },
+				jitter: 1
+			};
 
-		this.lastBurn.attr({x: x, y: y});
+			this.lastBurn = Crafty.e("2D,Canvas,Particles").particles(options);
 
-		this.attach(this.lastBurn);
+			var x = this.x + (Math.random() * 30);
+			var y = this.y + (Math.random() * 20);
+
+			this.lastBurn.attr({x: x, y: y});
+
+			this.attach(this.lastBurn);
+		}
 	},
 
 	rockRight: true,
@@ -186,32 +196,25 @@ Crafty.c('Player', {
 			sizeRandom: 4,
 			speed: 1,
 			speedRandom: 1.2,
-// Lifespan in frames
 			lifeSpan: 7,
 			lifeSpanRandom: 2,
-// Angle is calculated clockwise: 12pm is 0deg, 3pm is 90deg etc.
 			angle: 90,
 			angleRandom: 270,
 			startColour: [255, 131, 0, 1],
 			startColourRandom: [100, 100, 45, 0],
 			endColour: [245, 35, 0, 0],
 			endColourRandom: [60, 60, 60, 0],
-// Only applies when fastMode is off, specifies how sharp the gradients are drawn
 			sharpness: 20,
 			sharpnessRandom: 10,
-// Random spread from origin
 			spread: 40,
-// How many frames should this last
 			duration: 40,
-// Will draw squares instead of circle gradients
 			fastMode: false,
 			gravity: { x: 0, y: -3 },
-// sensible values are 0-3
 			jitter: 3
 		};
 
 		Crafty.audio.play('explosion');
-	 Crafty.e("Particle").setParticles(options).attr({
+	    Crafty.e("Particle").setParticles(options).attr({
 			x: this.x,
 			y: this.y
 		});
@@ -219,7 +222,6 @@ Crafty.c('Player', {
 		this.timeout(function(){
 			Crafty.scene('EndLose');
 		}, 1400);
-
 	},
 
 	rockBalloon: function () {
@@ -234,7 +236,6 @@ Crafty.c('Player', {
 	},
 
 	attachSprites: function () {
-
 		this.base = Crafty
 			.e('2D, Canvas, blimp_base_01')
 			.attr({x: this.x, y: this.y, w: this.width, h: this.height});
@@ -250,6 +251,5 @@ Crafty.c('Player', {
 		this.attach(this.drive);
 		this.attach(this.base);
 		this.attach(this.gun);
-
 	}
 });
