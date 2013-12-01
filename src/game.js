@@ -27,8 +27,8 @@ Game = {
 				.text(loadingText)
 				.attr({ x: Game.width / 2 - loadingText.length * 5 / 2, y: Game.height / 2 - 24, w: Game.width });
 
-
 			Crafty.audio.add('coin_pickup', 'assets/coin_pickup.ogg');
+			Crafty.audio.add('heart_pickup', 'assets/heart_pickup.ogg');
 			Crafty.audio.add('gun1_shot', 'assets/gun.ogg', 0.1);
 			Crafty.audio.add('cannon', 'assets/cannon.ogg');
 			Crafty.audio.add('explosion', 'assets/explosion.ogg');
@@ -40,6 +40,7 @@ Game = {
 				'assets/step01_basket.png',
 				'assets/step01_balloon.png',
 				'assets/damoney_resize.png',
+				'assets/herz.png',
 				'assets/parallax00.png',
 				'assets/parallax01.png',
 				'assets/parallax02.png',
@@ -87,6 +88,9 @@ Game = {
 				});
 				Crafty.sprite(20, 20, "assets/damoney_resize.png", {
 					coin_cog: [0, 0]
+				});
+				Crafty.sprite(20, 20, "assets/herz.png", {
+					heart: [0, 0]
 				});
 				Crafty.sprite(28, 55, "assets/enemy_balloon_resize.png", {
 					enemy_balloon: [0, 0]
