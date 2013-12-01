@@ -4,8 +4,10 @@ Crafty.c('Item', {
 
 		var item = this;
 		this.onHit('Player', function () {
-			Crafty.audio.play(this.pickupSound);
-			if(this.particleOptions) {
+			if(typeof this.pickupSound !== 'undefined') {
+				Crafty.audio.play(this.pickupSound);
+			}
+			if(typeof this.particleOptions !== 'undefined') {
 				Crafty.e("Particle").setParticles(this.particleOptions).attr({x: this.x, y: this.y });
 			}
 			item.destroy();
