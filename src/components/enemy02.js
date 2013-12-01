@@ -39,7 +39,8 @@ Crafty.c('EnemyFlugdings', {
 		}
 		this.attr({ x: this.x - 1 });
 
-		if( !this.withinViewPort() ) this.destroy();
+
+		if( this.x + 100 < (Crafty.viewport.x * -1)) this.destroy();
 	},
 
 
