@@ -17,7 +17,6 @@ Crafty.c('EnemyFlugzeug', {
 
 	damage: function (damagePoints) {
 		this.health -= damagePoints;
-		console.log(this.health);
 		if(this.health <= 0) {
 			var options = {
 				maxParticles: 150,

@@ -40,6 +40,7 @@ Crafty.c('EnemyBossship', {
 			};
 			Crafty.audio.play('explosion');
 			this.destroy();
+			Crafty.scene('EndWon');
 			return Crafty.e("Particle").setParticles(options).attr({
 				x: this.x + 125,
 				y: this.y + 90

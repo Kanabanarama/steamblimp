@@ -33,41 +33,7 @@ Crafty.scene('Stage01', function () {
 		});
 		player.timeout(generateBomb, 4000);
 	};
-<<<<<<< HEAD
 
-	var generateFlugzeug = function(e) {
-		if(e.frame % 300 === 0) {
-			var rand = Math.random();
-			Crafty.e('EnemyFlugzeug').attr({
-				x: -1*Crafty.viewport.x + 1000,
-				y: rand * (500 + Crafty.viewport.y)
-			});
-		}
-	}
-
-	var generateFlugdings = function(e) {
-		if(e.frame % 500 === 0) {
-			var rand = Math.random();
-			Crafty.e('EnemyFlugdings').attr({
-				x: -1*Crafty.viewport.x + 1000,
-				y: rand * (500 + Crafty.viewport.y)
-			});
-		}
-	}
-
-	Crafty.e('GameObject').timeout(function() {
-		Crafty.e('EnemyBossship').attr({
-			x: -1*Crafty.viewport.x + 1000,
-			y: Crafty.viewport.y/2
-		});
-	}, 60000);
-
-	Crafty.bind('EnterFrame', generateCoin);
-	Crafty.bind('EnterFrame', generateHealth);
-	Crafty.bind('EnterFrame', generateBomb);
-	Crafty.bind('EnterFrame', generateFlugzeug);
-	Crafty.bind('EnterFrame', generateFlugdings);
-=======
 	player.timeout(generateBomb, 4000);
 
 	var generateFlugzeug = function () {
@@ -89,7 +55,14 @@ Crafty.scene('Stage01', function () {
 		player.timeout(generateFlugdings, 8000);
 	}
 	player.timeout(generateFlugdings, 8000);
->>>>>>> e32ef017e2f663940f0f2073409a0bcd59200025
+
+	var generateBoss = function () {
+		Crafty.e('EnemyBossship').attr({
+			x: -1*Crafty.viewport.x + 1000,
+			y: Crafty.viewport.y/2
+		});
+	}
+	player.timeout(generateBoss, 600);
 
 	Game.score = Crafty.e('Score').attr({x: 15, y: 30 });
 
