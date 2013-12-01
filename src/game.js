@@ -30,6 +30,7 @@ Game = {
 
 			Crafty.audio.add('coin_pickup', 'assets/coin_pickup.ogg');
 			Crafty.audio.add('gun1_shot', 'assets/gun1_shot.ogg');
+			Crafty.audio.add('cannon', 'assets/cannon.ogg');
 			Crafty.audio.add('explosion', 'assets/explosion.ogg');
 
 			Crafty.load([
@@ -46,6 +47,8 @@ Game = {
 				'assets/enemy_flugdings_base.png',
 				'assets/enemy_flugdings_animation.png',
 				'assets/enemy_flugdings_gatling.png',
+				'assets/weapo_cannon_resize.png',
+				'assets/kugel_resize.png'
 			], function () {
 				Crafty.sprite(50, 84, 'assets/step01_basket.png', {
 					blimp_base_01: [0, 0]
@@ -55,6 +58,12 @@ Game = {
 				});
 				Crafty.sprite(50, 84, "assets/charakter_mit_karabiner.png", {
 					player_gun1: [0, 0]
+				});
+				Crafty.sprite(30, 14, "assets/weapo_cannon_resize.png", {
+					player_gun2: [0, 0]
+				});
+				Crafty.sprite(30, 14, "assets/kugel_resize.png", {
+					player_gun2_bullet: [0, 0]
 				});
 				Crafty.sprite(2000, 600, "assets/parallax00.png", {
 					background_layer_00: [0, 0]

@@ -4,7 +4,7 @@ Crafty.scene('Stage01', function () {
 	Crafty.e('Parallax').background('assets/parallax02.png').parallax(1.5);
 	Crafty.e('Parallax').background('assets/parallax03.png').parallax(2);
 
-	Crafty.e('Player').attr({ x: 50, y: 500 });
+	Crafty.e('Player').attr({ x: 100, y: 200 });
 
 	var generateCoin = function (e) {
 		if (e.frame % 100 === 0) {
