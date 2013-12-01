@@ -22,6 +22,10 @@ Crafty.c('Player', {
 			Game.score.add(1);
 		});
 
+		this.onHit('Health', function () {
+			this.lives = 6;
+		});
+
 		this.onHit('Deadly', function (hits) {
 			this.enemyHit();
 		});

@@ -7,10 +7,18 @@ Crafty.scene('Stage01', function () {
 
 	var generateCoin = function (e) {
 		if (e.frame % 100 === 0) {
-
 			var rand = Math.random();
-
 			Crafty.e('Coin').attr({
+				x: 980 + (Crafty.viewport.x * -1),
+				y: rand * (500 + Crafty.viewport.y)
+			});
+		}
+	};
+
+	var generateHealth = function (e) {
+		if (e.frame % 1000 === 0) {
+			var rand = Math.random();
+			Crafty.e('Health').attr({
 				x: 980 + (Crafty.viewport.x * -1),
 				y: rand * (500 + Crafty.viewport.y)
 			});
@@ -48,6 +56,7 @@ Crafty.scene('Stage01', function () {
 	}
 
 	Crafty.bind('EnterFrame', generateCoin);
+	Crafty.bind('EnterFrame', generateHealth);
 	Crafty.bind('EnterFrame', generateBomb);
 	Crafty.bind('EnterFrame', generateFlugzeug);
 	Crafty.bind('EnterFrame', generateFlugdings);
