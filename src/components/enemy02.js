@@ -32,7 +32,7 @@ Crafty.c('EnemyFlugdings', {
 			this.attr({y: this.y - this.wiggleSpeed*this.wiggleDirection });
 			this.wiggleMovement -= this.wiggleSpeed;
 		}
-		this.attr({x: this.x - 1 });
+		this.attr({ x: this.x - 1 });
 	},
 
 	explode: function () {

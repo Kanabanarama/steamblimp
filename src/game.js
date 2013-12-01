@@ -39,6 +39,7 @@ Game = {
 				'assets/charakter_mit_karabiner.png',
 				'assets/enemy_balloon_resize.png',
 				'assets/enemy_bomb1_resize.png',
+				'assets/enemy_flugzeug.png',
 				'assets/enemy_flugdings_base.png',
 				'assets/enemy_flugdings_animation.png',
 				'assets/enemy_flugdings_gatling.png',
@@ -60,6 +61,9 @@ Game = {
 				});
 				Crafty.sprite(28, 55, "assets/enemy_bomb1_resize.png", {
 					enemy_bomb: [0, 0]
+				});
+				Crafty.sprite(60, 39, "assets/enemy_flugzeug.png", {
+					enemy_flugzeug: [0, 0]
 				});
 				Crafty.sprite(60, 58, "assets/enemy_flugdings_base.png", {
 					enemy_flugdings: [0, 0]
