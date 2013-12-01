@@ -32,7 +32,7 @@ Crafty.scene('Stage01', function () {
 			var rand = Math.random();
 			Crafty.e('EnemyFlugdings').attr({
 				x: -1*Crafty.viewport.x + 1000,
-				y: rand * 600 + (Crafty.viewport.y * -1)-250
+				y: rand * (500 + Crafty.viewport.y)
 			});
 		}
 	}

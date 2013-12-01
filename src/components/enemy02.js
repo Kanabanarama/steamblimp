@@ -15,7 +15,24 @@ Crafty.c('EnemyFlugdings', {
 		});
 	},
 
+	wiggleSpeed: 2,
+	wiggleMovement: 0,
+	wiggleDirection: 0,
 	fly: function () {
+		if(this.wiggleMovement <= 0 && Crafty.frame() % 20 === 0) {
+			var random = Math.random();
+			this.wiggleMovement = 30+random*30;
+			if(random > 0.5) {
+				this.wiggleDirection = 1;
+			} else {
+				this.wiggleDirection = -1;
+			}
+			console.log('rnd movement', this.wiggleMovement, this.wiggleDirection);
+		}
+		if(this.wiggleMovement > 0) {
+			this.attr({y: this.y - this.wiggleSpeed*this.wiggleDirection });
+			this.wiggleMovement -= this.wiggleSpeed;
+		}
 		this.attr({x: this.x - 1 });
 	},
 
