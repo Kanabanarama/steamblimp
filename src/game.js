@@ -139,8 +139,5 @@ Game = {
 
 			Crafty.scene('Stage01');
 		});
-	},
-	gameLoop: function (e) {
-		Crafty.viewport.x -= Game.scrollspeed.x;
 	}
 };

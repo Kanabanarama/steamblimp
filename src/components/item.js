@@ -14,6 +14,8 @@ Crafty.c('Item', {
 		});
 
 		var removeInvisibleItem = function () {
+			item.attr({x: item.x - 1});
+
 			if (!item.withinViewPort()) {
 				item.unbind('EnterFrame', removeInvisibleItem);
 				item.destroy();

@@ -1,6 +1,6 @@
 Crafty.scene('Stage01', function () {
-	Crafty.e('Parallax').background('assets/parallax00.png').parallax(0);
-	//Crafty.e('Parallax').background('assets/parallax01.png').parallax(1);
+	Crafty.e('Parallax').background('assets/parallax00.png').parallax(0.5);
+	Crafty.e('Parallax').background('assets/parallax01.png').parallax(1);
 	Crafty.e('Parallax').background('assets/parallax02.png').parallax(1.5);
 
 	var player = Crafty.e('Player').attr({ x: 100, y: 200 });
@@ -65,6 +65,4 @@ Crafty.scene('Stage01', function () {
 	player.timeout(generateBoss, 60000);
 
 	Game.score = Crafty.e('Score').attr({x: 15, y: 30 });
-
-	Crafty.bind('EnterFrame', Game.gameLoop);
 });

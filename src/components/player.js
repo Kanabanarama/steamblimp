@@ -168,15 +168,10 @@ Crafty.c('Player', {
 	rockRight: true,
 
 	driftForward: function (e) {
-		this.attr({ 'x': this.x + 1 });
-
-		//if (e.frame % 3 === 0) this.rockBalloon();
-
 		if (this.y > 600) {
 			if( !this.dead ) {
 				this.death();
 			}
-
 		}
 	},
 
