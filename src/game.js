@@ -60,7 +60,8 @@ Game = {
 				'assets/laser_shot.png',
 				'assets/dubstep.png',
 				'assets/boss_ship_base.png',
-				'assets/boss_ship_animation.png'
+				'assets/boss_ship_animation.png',
+				'assets/boss_ship_rocket.png'
 			], function () {
 				Crafty.sprite(50, 84, 'assets/step01_basket.png', {
 					blimp_base_01: [0, 0]
@@ -124,6 +125,9 @@ Game = {
 				});
 				Crafty.sprite(250, 172, "assets/boss_ship_animation.png", {
 					boss_ship_drive: [0, 0]
+				});
+				Crafty.sprite(25, 9, "assets/boss_ship_rocket.png", {
+					boss_ship_rocket: [0, 0]
 				});
 
 				Crafty.scene('Main');

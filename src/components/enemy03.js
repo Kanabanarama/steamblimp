@@ -5,8 +5,8 @@ Crafty.c('EnemyBossship', {
 		this.requires('GameObject, Collision, Enemy');
 		this.attr({w: 250, h: 172});
 		this.bind('EnterFrame', this.fly);
-		this.timeout(this.shootRocket, 3000);
-		this.timeout(this.cycleLaser, 300);
+		this.timeout(this.cycleRocket, 3000);
+		this.timeout(this.cycleLaser, 10000);
 		this.attachSprites();
 	},
 
@@ -16,12 +16,23 @@ Crafty.c('EnemyBossship', {
 		}
 	},
 
+	cycleRocket: function() {
+		this.shootRocket();
+		this.timeout(this.cycleRocket, 3000);
+	},
+
 	shootRocket: function () {
-		Crafty.e('Enemy, Collision').attr({
-			x: this.x,
-			y: this.y
+		Crafty.audio.play('cannon');
+		var rocket = Crafty.e('GameObject, Collision, Deadly, boss_ship_rocket').attr({
+			x: this.x+70,
+			y: this.y+140
 		});
-		//this.timeout(this.shootRockets, 3000);
+		this.bind('EnterFrame', function() {
+			rocket.attr({ x: rocket._x-10 });
+		});
+		this.timeout(function () {
+			rocket.destroy()
+		}, 5000);
 	},
 
 	cycleLaser: function() {
@@ -46,21 +57,6 @@ Crafty.c('EnemyBossship', {
 		this.timeout(function () {
 			laser.destroy()
 		}, 3000);
-
-		/*this.timeout(function(){
-			Crafty.audio.play('dubstep_charge');
-			Crafty.audio.play('dubstep');
-
-			var laser = Crafty.e('GameObject, Collision, Deadly, Color')
-				.attr({ x: -978, y: 94, w: 2000, h: 22 })
-				.color('#FF0000');
-			this.attach(laser);
-			this.timeout(function () {
-				laser.destroy()
-			}, 3000);
-		}, 3000);
-
-		this.timeout(this.shootLaser, 9000);*/
 	},
 
 	damage: function (damagePoints) {
