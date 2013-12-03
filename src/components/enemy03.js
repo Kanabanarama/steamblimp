@@ -53,14 +53,14 @@ Crafty.c('EnemyBossship', {
 		this.base = Crafty.e('GameObject, boss_ship_base');
 		this.wings = Crafty.e('GameObject, SpriteAnimation, boss_ship_drive');
 
-		this.base.attr({x: this.x, y: this.y, w: 250, h: 172});
-		this.wings.attr({x: this.x, y: this.y, w: 250, h: 172});
+		this.base.attr({w: 250, h: 172});
+		this.wings.attr({w: 250, h: 172});
+
+		this.attach(this.base);
+		this.attach(this.wings);
 
 		this.wings
 			.animate('fly', 0, 0, 3)
 			.animate('fly', 30, -1);
-
-		this.attach(this.base);
-		this.attach(this.wings);
 	}
 });

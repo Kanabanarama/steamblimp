@@ -3,11 +3,8 @@ Crafty.c('EnemyFlugzeug', {
 
 	init: function () {
 		this.requires('GameObject, Collision, Enemy');
-
 		this.attr({w: 60, h: 39});
-
 		this.attachSprites();
-
 		this.bind('EnterFrame', this.fly);
 	},
 
@@ -52,7 +49,7 @@ Crafty.c('EnemyFlugzeug', {
 
 	attachSprites: function () {
 		this.base = Crafty.e('GameObject, enemy_flugzeug');
-		this.base.attr({x: this.x, y: this.y, w: 60, h: 39});
+		this.base.attr({w: 60, h: 39});
 		this.attach(this.base);
 	}
 });
