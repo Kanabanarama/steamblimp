@@ -1,5 +1,5 @@
 Crafty.c('EnemyFlugdings', {
-	health: 20,
+	health: 15,
 
 	init: function () {
 		this.requires('GameObject, Collision, Enemy');

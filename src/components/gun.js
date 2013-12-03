@@ -1,7 +1,7 @@
 Crafty.c('Gun_1', {
 	width: 50,
 	height: 84,
-	firepower: 1,
+	firepower: 4,
 
 	init: function () {
 		var gun = this;
@@ -15,7 +15,6 @@ Crafty.c('Gun_1', {
 	},
 
 	wait: false,
-
 	fire: function () {
 		var gun = this;
 		if (!gun.wait) {
