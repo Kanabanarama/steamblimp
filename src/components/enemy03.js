@@ -5,6 +5,8 @@ Crafty.c('EnemyBossship', {
 		this.requires('GameObject, Collision, Enemy');
 		this.attr({w: 250, h: 172});
 		this.bind('EnterFrame', this.fly);
+		this.timeout(this.shootRocket, 3000);
+		this.timeout(this.cycleLaser, 300);
 		this.attachSprites();
 	},
 
@@ -12,6 +14,53 @@ Crafty.c('EnemyBossship', {
 		if(Crafty.frame() % 2 === 0) {
 			this.attr({ x: this.x - 1 });
 		}
+	},
+
+	shootRocket: function () {
+		Crafty.e('Enemy, Collision').attr({
+			x: this.x,
+			y: this.y
+		});
+		//this.timeout(this.shootRockets, 3000);
+	},
+
+	cycleLaser: function() {
+		this.timeout(function(){
+			Crafty.audio.play('dubstep_charge');
+			this.timeout(function () {
+				this.shootLaser();
+			}, 5000);
+		}, 5000);
+		this.timeout(this.cycleLaser, 10000);
+	},
+
+	shootLaser: function() {
+		Crafty.audio.play('dubstep');
+		var laser = Crafty.e('GameObject, Collision, Deadly, Color')
+			.attr({ x: this.x-1962, y: this.y+94, w: 2000, h: 22 })
+			.color('#FF0000');
+		this.attach(laser);
+		this.bind('EnterFrame', function() {
+			laser.color('rgb('+Math.floor(Math.random()*255)+','+Math.floor(Math.random()*255)+','+Math.floor(Math.random()*255)+')')
+		});
+		this.timeout(function () {
+			laser.destroy()
+		}, 3000);
+
+		/*this.timeout(function(){
+			Crafty.audio.play('dubstep_charge');
+			Crafty.audio.play('dubstep');
+
+			var laser = Crafty.e('GameObject, Collision, Deadly, Color')
+				.attr({ x: -978, y: 94, w: 2000, h: 22 })
+				.color('#FF0000');
+			this.attach(laser);
+			this.timeout(function () {
+				laser.destroy()
+			}, 3000);
+		}, 3000);
+
+		this.timeout(this.shootLaser, 9000);*/
 	},
 
 	damage: function (damagePoints) {
