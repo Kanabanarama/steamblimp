@@ -32,7 +32,7 @@ Crafty.c('EnemyBossship', {
 	},
 
 	shootRocket: function () {
-		Crafty.audio.play('cannon');
+		Crafty.audio.play('boss_ship_rocket');
 		var rocket = Crafty.e('GameObject, Collision, Enemy, Deadly, boss_ship_rocket').attr({
 			x: this.x+70,
 			y: this.y+140

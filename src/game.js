@@ -39,6 +39,7 @@ Game = {
 			Crafty.audio.add('minigun', 'assets/minigun.mp3', 0.1);
 			Crafty.audio.add('dubstep_charge', 'assets/dubstepcharge.ogg', 0.1);
 			Crafty.audio.add('dubstep', 'assets/dubstep.ogg');
+			Crafty.audio.add('boss_ship_rocket', 'assets/boss_ship_rocket.ogg');
 			Crafty.audio.add('boss_ship_charge', 'assets/boss_ship_charge.ogg');
 			Crafty.audio.add('boss_ship_laser', 'assets/boss_ship_laser.ogg');
 
