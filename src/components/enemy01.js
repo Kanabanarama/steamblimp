@@ -46,5 +46,11 @@ Crafty.c('EnemyFlugzeug', {
 				y: this.y + 45
 			});
 		}
+	},
+
+	attachSprites: function () {
+		this.base = Crafty.e('GameObject, enemy_flugzeug');
+		this.base.attr({x: this.x, y: this.y, w: 60, h: 39});
+		this.attach(this.base);
 	}
 });

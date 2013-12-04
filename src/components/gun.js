@@ -1,7 +1,7 @@
 Crafty.c('Gun_1', {
 	width: 50,
 	height: 84,
-	firepower: 1,
+	firepower: 4,
 	pauseBetweenShots: 1000,
 
 	init: function () {

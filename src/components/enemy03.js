@@ -3,10 +3,60 @@ Crafty.c('EnemyBossship', {
 
 	init: function () {
 		this.requires('GameObject, Collision, Enemy');
-
 		this.attr({w: 250, h: 172});
-
+		this.bind('EnterFrame', this.fly);
+		this.timeout(this.cycleRocket, 3000);
+		this.timeout(this.cycleLaser, 10000);
 		this.attachSprites();
+	},
+
+	fly: function() {
+		if(Crafty.frame() % 2 === 0) {
+			this.attr({ x: this.x - 1 });
+		}
+	},
+
+	cycleRocket: function() {
+		this.shootRocket();
+		this.timeout(this.cycleRocket, 3000);
+	},
+
+	shootRocket: function () {
+		Crafty.audio.play('cannon');
+		var rocket = Crafty.e('GameObject, Collision, Deadly, boss_ship_rocket').attr({
+			x: this.x+70,
+			y: this.y+140
+		});
+		this.bind('EnterFrame', function() {
+			rocket.attr({ x: rocket._x-10 });
+		});
+		this.timeout(function () {
+			rocket.destroy()
+		}, 5000);
+	},
+
+	cycleLaser: function() {
+		this.timeout(function(){
+			Crafty.audio.play('dubstep_charge');
+			this.timeout(function () {
+				this.shootLaser();
+			}, 5000);
+		}, 5000);
+		this.timeout(this.cycleLaser, 10000);
+	},
+
+	shootLaser: function() {
+		Crafty.audio.play('dubstep');
+		var laser = Crafty.e('GameObject, Collision, Deadly, Color')
+			.attr({ x: this.x-1962, y: this.y+94, w: 2000, h: 22 })
+			.color('#FF0000');
+		this.attach(laser);
+		this.bind('EnterFrame', function() {
+			laser.color('rgb('+Math.floor(Math.random()*255)+','+Math.floor(Math.random()*255)+','+Math.floor(Math.random()*255)+')')
+		});
+		this.timeout(function () {
+			laser.destroy()
+		}, 3000);
 	},
 
 	damage: function (damagePoints) {
@@ -18,8 +68,8 @@ Crafty.c('EnemyBossship', {
 				sizeRandom: 10,
 				speed: 3,
 				speedRandom: 1.2,
-				lifeSpan: 7,
-				lifeSpanRandom: 2,
+				lifeSpan: 30,
+				lifeSpanRandom: 0,
 				angle: 0,
 				angleRandom: 180,
 				startColour: [255, 131, 0, 1],
@@ -28,11 +78,11 @@ Crafty.c('EnemyBossship', {
 				endColourRandom: [60, 60, 60, 0],
 				sharpness: 20,
 				sharpnessRandom: 10,
-				spread: 20,
+				spread: 50,
 				duration: 7,
 				fastMode: false,
 				gravity: { x: 0, y: 0 },
-				jitter: 2
+				jitter: 4
 			};
 			Crafty.audio.play('explosion');
 			this.destroy();
@@ -48,14 +98,14 @@ Crafty.c('EnemyBossship', {
 		this.base = Crafty.e('GameObject, boss_ship_base');
 		this.wings = Crafty.e('GameObject, SpriteAnimation, boss_ship_drive');
 
-		this.base.attr({x: this.x, y: this.y, w: 250, h: 172});
-		this.wings.attr({x: this.x, y: this.y, w: 250, h: 172});
+		this.base.attr({w: 250, h: 172});
+		this.wings.attr({w: 250, h: 172});
+
+		this.attach(this.base);
+		this.attach(this.wings);
 
 		this.wings
 			.animate('fly', 0, 0, 3)
 			.animate('fly', 30, -1);
-
-		this.attach(this.base);
-		this.attach(this.wings);
 	}
 });
