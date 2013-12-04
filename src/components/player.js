@@ -47,12 +47,16 @@ Crafty.c('Player', {
 
 		this.applyDownDrift();
 
-		this.bind('KeyDown', this.switchWeapon);
+		this.bind('KeyDown', this.onKeyDown);
 	},
 
 	lastWeapon: null,
 
-	switchWeapon: function (e) {
+	onKeyDown: function (e) {
+		if (e.key == Crafty.keys['SPACE']) {
+			this.gun.fire();
+			return;
+		}
 
 		if (e.key == this.lastWeapon) return;
 
@@ -107,17 +111,17 @@ Crafty.c('Player', {
 		this.updateDamage();
 	},
 
-	aquireHealth: function(health) {
+	aquireHealth: function (health) {
 		this.lives = health;
 		this.downDrift -= health;
-		if(this.downDrift < 0) {
+		if (this.downDrift < 0) {
 			this.downDrift = 0;
 		}
 		this.updateDamage();
 	},
 
 	downDrift: 0,
-	applyDownDrift: function() {
+	applyDownDrift: function () {
 		var self = this;
 		this.bind('EnterFrame', function () {
 			this.attr({ y: this.y + self.downDrift });
@@ -128,7 +132,7 @@ Crafty.c('Player', {
 	updateDamage: function () {
 		if (this.lastBurn) this.lastBurn.destroy();
 
-		if(this.lives < 6) {
+		if (this.lives < 6) {
 			if (this.lastBurn === null) Crafty.audio.play('burning');
 
 			var options = {
@@ -169,14 +173,14 @@ Crafty.c('Player', {
 
 	driftForward: function (e) {
 		if (this.y > 600) {
-			if( !this.dead ) {
+			if (!this.dead) {
 				this.death();
 			}
 		}
 	},
 
 	dead: false,
-	death: function(){
+	death: function () {
 		this.dead = true;
 		var options = {
 			maxParticles: 150,
@@ -202,12 +206,12 @@ Crafty.c('Player', {
 		};
 
 		Crafty.audio.play('explosion');
-	    Crafty.e("Particle").setParticles(options).attr({
+		Crafty.e("Particle").setParticles(options).attr({
 			x: this.x,
 			y: this.y
 		});
 
-		this.timeout(function(){
+		this.timeout(function () {
 			Crafty.scene('EndLose');
 		}, 1400);
 	},

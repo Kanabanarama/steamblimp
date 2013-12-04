@@ -137,7 +137,7 @@ Game = {
 				}
 			});
 
-			Crafty.scene('Stage01');
+			Crafty.scene('Stage02');
 		});
 	}
 };

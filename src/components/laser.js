@@ -1,92 +1,64 @@
 Crafty.c('Laser', {
+	width: 35,
+	height: 17,
 	firepower: 5,
-
-	init: function () {
-		var gun = this;
-		this.requires('GameObject, laser_sprite');
-		this.attr({w: 35, h: 17});
-
-		this.bind('KeyDown', function (e) {
-			if (e.key == Crafty.keys['SPACE']) gun.fire();
-		});
-	},
-
+	pauseBetweenShots: 300,
 	wait: false,
 
-	fire: function () {
-		var gun = this;
-		if (!gun.wait) {
-			gun.wait = true;
-			var bullet = Crafty.e('GameObject, Color, Bullet, Collision');
-
-			bullet.color('#ee5555');
-
-			bullet.onHit('Enemy', function (hits) {
-				bullet.destroy();
-				if(hits[0].obj.damage) {
-					hits[0].obj.damage(gun.firepower);
-				}
-			});
-
-			bullet.attr({
-				x: this.x,
-				y: this.y + 8,
-				w: 100,
-				h: 2
-			});
-
-			this.showSmoke();
-
-			Crafty.audio.play('laser');
-			var moveBullet = function () {
-				bullet.attr({ x: bullet.x + 50 });
-				if (!bullet.withinViewPort()) {
-					bullet.unbind('EnterFrame', moveBullet);
-					bullet.destroy();
-				}
-			};
-
-			gun.timeout(function () {
-				gun.wait = false;
-			}, 200);
-
-			bullet.bind('EnterFrame', moveBullet);
-		}
+	init: function () {
+		this.requires('GameObject, laser_sprite');
+		this.attr({w: this.width, h: this.height});
 	},
 
-	showSmoke: function () {
-		var options = {
-			maxParticles: 150,
-			size: 5,
+	fire: function () {
+		var gun = this, bullet, particleConfig;
+
+		if (gun.wait) return;
+		gun.wait = true;
+		gun.timeout(function () {
+			gun.wait = false;
+		}, this.pauseBetweenShots);
+
+		bullet = Crafty
+			.e('GameObject, Color, Bullet, Collision')
+			.color('#ee5555')
+			.attr({
+				x: this.x - 20,
+				y: this.y + 10,
+				w: 100,
+				h: 2
+			}).onHit('Enemy', function (hits) {
+				bullet.destroy();
+				if (hits[0].obj.damage) hits[0].obj.damage(gun.firepower);
+			})
+			.bind('EnterFrame', function () {
+				bullet.x += 50;
+				if (!bullet.withinViewPort()) bullet.destroy();
+			});
+
+		particleConfig = {
+			maxParticles: 50,
+			size: 10,
 			sizeRandom: 4,
 			speed: 2,
-			speedRandom: 1.2,
-// Lifespan in frames
-			lifeSpan: 10,
-			lifeSpanRandom: 7,
-// Angle is calculated clockwise: 12pm is 0deg, 3pm is 90deg etc.
+			lifeSpan: 3,
+			lifeSpanRandom: 3,
 			angle: 90,
-			angleRandom: 34,
 			startColour: [255, 70, 70, 1],
 			endColour: [255, 70, 70, 0],
-			endColourRandom: [60, 60, 60, 0],
-// Only applies when fastMode is off, specifies how sharp the gradients are drawn
-			sharpness: 20,
-			sharpnessRandom: 10,
-// Random spread from origin
-			spread: 5,
-// How many frames should this last
+			spread: 4,
 			duration: 6,
-// Will draw squares instead of circle gradients
-			fastMode: false,
-			gravity: { x: 2, y: 0 },
-// sensible values are 0-3
-			jitter: 2
+			gravity: { x: 2, y: 0 }
 		};
 
-		this.attach(Crafty.e("Particle").setParticles(options).attr({
-			x: this.x + 24,
-			y: this.y + 7
-		}));
+		gun.attach(Crafty.e("Particle")
+			.setParticles(particleConfig)
+			.attr({
+				x: this.x + 24,
+				y: this.y + 7
+			})
+		);
+
+		Crafty.audio.play('laser');
 	}
 });
