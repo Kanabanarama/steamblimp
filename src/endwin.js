@@ -3,11 +3,11 @@ Crafty.scene('EndWin', function () {
 	Crafty.e('Parallax').background('assets/parallax00.png').parallax(0);
 	var loseMessage = 'Your butt remains safe!';
 
-	//Crafty.audio.play('won');
+	Crafty.audio.play('won');
 
 	var text = Crafty.e('2D, Canvas, Text, Tween')
 		.text(loseMessage)
-		.textFont({size: '100px', family: 'Georgia, serif'})
+		.textFont({size: '90px', family: 'Georgia, serif'})
 		.attr({
 			alpha: 0,
 			x: -Crafty.viewport.x + (Game.width - loseMessage.length*40)/2,

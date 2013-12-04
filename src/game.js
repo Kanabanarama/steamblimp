@@ -34,10 +34,13 @@ Game = {
 			Crafty.audio.add('explosion', 'assets/explosion.ogg');
 			Crafty.audio.add('burning', 'assets/burning.ogg');
 			Crafty.audio.add('lost', 'assets/lost.mp3');
+			Crafty.audio.add('won', 'assets/won.ogg');
 			Crafty.audio.add('laser', 'assets/laser.ogg');
 			Crafty.audio.add('minigun', 'assets/minigun.mp3', 0.1);
 			Crafty.audio.add('dubstep_charge', 'assets/dubstepcharge.ogg', 0.1);
 			Crafty.audio.add('dubstep', 'assets/dubstep.ogg');
+			Crafty.audio.add('boss_ship_charge', 'assets/boss_ship_charge.ogg');
+			Crafty.audio.add('boss_ship_laser', 'assets/boss_ship_laser.ogg');
 
 			Crafty.load([
 				'assets/step01_basket.png',
@@ -141,7 +144,7 @@ Game = {
 				}
 			});
 
-			Crafty.scene('Stage02');
+			Crafty.scene('Stage01');
 		});
 	}
 };

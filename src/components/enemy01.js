@@ -2,7 +2,7 @@ Crafty.c('EnemyFlugzeug', {
 	health: 5,
 
 	init: function () {
-		this.requires('GameObject, Collision, enemy_flugzeug');
+		this.requires('GameObject, Collision, Enemy, enemy_flugzeug');
 
 		this.attr({w: 60, h: 39});
 

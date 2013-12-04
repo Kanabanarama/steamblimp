@@ -10,20 +10,30 @@ Crafty.c('EnemyBossship', {
 		this.attachSprites();
 	},
 
+	floatDirection: 2,
 	fly: function() {
 		if(Crafty.frame() % 2 === 0) {
-			this.attr({ x: this.x - 1 });
+			if(this._x > 720) {
+				this.attr({ x: this.x - 1 });
+			} else {
+				if(Crafty.frame() % 500 === 0) {
+					this.floatDirection = -this.floatDirection;
+				}
+				this.attr({ y: this.y + this.floatDirection });
+			}
 		}
 	},
 
 	cycleRocket: function() {
 		this.shootRocket();
-		this.timeout(this.cycleRocket, 3000);
+		if(this.health > 0) {
+			this.timeout(this.cycleRocket, 3000);
+		}
 	},
 
 	shootRocket: function () {
 		Crafty.audio.play('cannon');
-		var rocket = Crafty.e('GameObject, Collision, Deadly, boss_ship_rocket').attr({
+		var rocket = Crafty.e('GameObject, Collision, Enemy, Deadly, boss_ship_rocket').attr({
 			x: this.x+70,
 			y: this.y+140
 		});
@@ -37,17 +47,21 @@ Crafty.c('EnemyBossship', {
 
 	cycleLaser: function() {
 		this.timeout(function(){
-			Crafty.audio.play('dubstep_charge');
+			Crafty.audio.play('boss_ship_charge');
 			this.timeout(function () {
-				this.shootLaser();
+				if(this.health > 0) {
+					this.shootLaser();
+				}
 			}, 5000);
 		}, 5000);
-		this.timeout(this.cycleLaser, 10000);
+		if(this.health > 0) {
+			this.timeout(this.cycleLaser, 10000);
+		}
 	},
 
 	shootLaser: function() {
-		Crafty.audio.play('dubstep');
-		var laser = Crafty.e('GameObject, Collision, Deadly, Color')
+		Crafty.audio.play('boss_ship_laser');
+		var laser = Crafty.e('GameObject, Collision, Deadly, Color, Alpha')
 			.attr({ x: this.x-1962, y: this.y+94, w: 2000, h: 22 })
 			.color('#FF0000');
 		this.attach(laser);
@@ -86,6 +100,8 @@ Crafty.c('EnemyBossship', {
 			};
 			Crafty.audio.play('explosion');
 			this.destroy();
+			this.rocketTimeout = null;
+			this.rocketTimeout = null;
 			Crafty.scene('EndWin');
 			return Crafty.e("Particle").setParticles(options).attr({
 				x: this.x + 125,
