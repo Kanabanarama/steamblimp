@@ -34,5 +34,5 @@ Crafty.scene('Stage02', function () {
 		});
 	}
 
-	Game.score = Crafty.e('Score').attr({x: 15, y: 30 });
+	Game.score = Crafty.e('Score').attr({x: 15, y: 15 });
 });

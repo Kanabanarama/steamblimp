@@ -162,7 +162,7 @@ Crafty.c('EnemyFlugdings', {
 		this.attach(this.wings);
 
 		this.wings
-			.animate('fly', 0, 0, 5)
-			.animate('fly', 30, -1);
+			.reel('fly', 800, 0, 0, 6)
+			.animate('fly', -1);
 	}
 });
