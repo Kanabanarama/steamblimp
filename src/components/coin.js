@@ -3,14 +3,12 @@ Crafty.c('Coin', {
 	init: function () {
 		this.requires('Item, Tween, coin_cog');
 
-		this.attr({w: 20, h: 20});
-		this.tween({
-			rotation: 3
-		}, -1).origin('center');
-		this.particleOptions = {
-			maxParticles: 100,
+		this.attr({w: 20, h: 20})
+			.origin('center')
+			.tween({ rotation: 3 }, -1)
+			.particleOptions = {
+			maxParticles: 50,
 			size: 15,
-			sizeRandom: 4,
 			speed: 0.3,
 			speedRandom: 1.2,
 			lifeSpan: 10,
@@ -23,9 +21,7 @@ Crafty.c('Coin', {
 			sharpnessRandom: 10,
 			spread: 5,
 			duration: 5,
-			fastMode: false,
-			gravity: { x: 0, y: 0 },
-			jitter: 0
+			gravity: { x: 0, y: 0 }
 		};
 	}
 });

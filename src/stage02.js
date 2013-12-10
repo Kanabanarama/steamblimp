@@ -35,4 +35,8 @@ Crafty.scene('Stage02', function () {
 	}
 
 	Game.score = Crafty.e('Score').attr({x: 15, y: 15 });
+
+	player.timeout(function () {
+		Crafty.scene('Stage03');
+	}, 60000);
 });
