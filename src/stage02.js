@@ -38,5 +38,5 @@ Crafty.scene('Stage02', function () {
 
 	player.timeout(function () {
 		Crafty.scene('Stage03');
-	}, 60000);
+	}, 1000);
 });

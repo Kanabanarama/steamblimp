@@ -7,6 +7,9 @@ Crafty.scene('Stage03', function () {
 
 	var player = Crafty.e('Player').attr({ x: 100, y: 200 });
 
+	player.timeout(function () {
+		Crafty.e('EnemyBossship').attr({x: 800, y: 150});
+	}, 5000);
 
 	Game.score = Crafty.e('Score').attr({x: 15, y: 15 });
 });
