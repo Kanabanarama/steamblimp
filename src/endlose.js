@@ -10,10 +10,10 @@ Crafty.scene('EndLose', function () {
 		.textFont({size: '90px', family: 'Georgia, serif'})
 		.attr({
 			alpha: 0,
-			x: -Crafty.viewport.x + (Game.width - loseMessage.length*40)/2,
-			y: (Crafty.viewport.y + Game.height/2 + 34 ) - 400,
+			x: -Crafty.viewport.x + (Game.width - loseMessage.length*38)/2,
+			y: Crafty.viewport.y - 100,
 			w: Game.width
 		});
 
-	text.tween({alpha: 1, y: text.y + 400}, 200);
+	text.tween({alpha: 1, y: text.y + Game.height/2 + 50}, 1000);
 });

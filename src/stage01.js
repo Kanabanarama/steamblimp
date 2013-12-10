@@ -64,5 +64,5 @@ Crafty.scene('Stage01', function () {
 	}
 	player.timeout(generateBoss, 30000);
 
-	Game.score = Crafty.e('Score').attr({x: 15, y: 30 });
+	Game.score = Crafty.e('Score').attr({x: 15, y: 15 });
 });
