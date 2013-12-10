@@ -121,7 +121,7 @@ Crafty.c('EnemyBossship', {
 		this.attach(this.wings);
 
 		this.wings
-			.animate('fly', 0, 0, 3)
-			.animate('fly', 30, -1);
+			.reel('fly', 1000, 0, 0, 4)
+			.animate('fly', -1);
 	}
 });
