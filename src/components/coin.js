@@ -5,7 +5,7 @@ Crafty.c('Coin', {
 
 		this.attr({w: 20, h: 20})
 			.origin('center')
-			.tween({ rotation: 3 }, -1)
+			.tween({ rotation: 6*360 }, 20000)
 			.particleOptions = {
 			maxParticles: 50,
 			size: 15,

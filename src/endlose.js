@@ -15,5 +15,5 @@ Crafty.scene('EndLose', function () {
 			w: Game.width
 		});
 
-	text.tween({alpha: 1, y: text.y + Game.height/2 + 50}, 1000);
+	text.tween({alpha: 1, y: text.y + Game.height/2 + 50}, 2000);
 });

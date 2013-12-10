@@ -12,8 +12,9 @@ Crafty.c('EnemyFlugdings', {
 	wiggleSpeed: 2,
 	wiggleMovement: 0,
 	wiggleDirection: 0,
-	fly: function () {
-		if (this.wiggleMovement <= 0 && Crafty.frame() % 6 === 0) {
+	fly: function (event) {
+		if ((this.wiggleMovement <= 0) && (this.wings.reelPosition() === 2)) {
+			console.log('change direction');
 			var random = Math.random();
 			this.wiggleMovement = 30 + random * 30;
 			if (random > 0.5) {
@@ -22,11 +23,12 @@ Crafty.c('EnemyFlugdings', {
 				this.wiggleDirection = -1;
 			}
 		}
+		this.wiggleSpeed = this.wings.reelPosition()/3;
 		if (this.wiggleMovement > 0) {
 			this.attr({y: this.y - this.wiggleSpeed * this.wiggleDirection });
 			this.wiggleMovement -= this.wiggleSpeed;
 		}
-		this.attr({ x: this.x - 1 });
+		this.attr({ x: this.x - 2 });
 
 		if( this.x + 100 < (Crafty.viewport.x * -1)) this.destroy();
 	},

@@ -4,19 +4,19 @@ Crafty.c('EnemyBossship', {
 	init: function () {
 		this.requires('GameObject, Collision, Enemy');
 		this.attr({w: 250, h: 172});
+		this.attachSprites();
 		this.bind('EnterFrame', this.fly);
 		this.timeout(this.cycleRocket, 3000);
 		this.timeout(this.cycleLaser, 10000);
-		this.attachSprites();
 	},
 
 	floatDirection: 2,
-	fly: function() {
-		if(Crafty.frame() % 2 === 0) {
+	fly: function(event) {
+		if(event.frame % 2 === 0) {
 			if(this._x > 720) {
 				this.attr({ x: this.x - 1 });
 			} else {
-				if(Crafty.frame() % 500 === 0) {
+				if(event.frame % 500 === 0) {
 					this.floatDirection = -this.floatDirection;
 				}
 				this.attr({ y: this.y + this.floatDirection });
