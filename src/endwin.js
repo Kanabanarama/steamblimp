@@ -16,4 +16,8 @@ Crafty.scene('EndWin', function () {
 		});
 
 	text.tween({alpha: 1, y: text.y + 400}, 200);
+
+	text.timeout(function () {
+		Crafty.scene('Stage02');
+	}, 10000);
 });
