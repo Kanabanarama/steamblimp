@@ -8,21 +8,7 @@ Crafty.scene('Stage02', function () {
 	var player = Crafty.e('Player').attr({ x: 100, y: 200 });
 
 	var level = {
-		1: { type: 'Coin', y: 10 },
-		2: { type: 'Coin', y: 30 },
-		3: { type: 'Coin', y: 50 },
-		4: [
-			{ type: 'Coin', y: 50 },
-			{ type: 'Coin', y: 70 },
-			{ type: 'Coin', y: 90 },
-			{ type: 'Coin', y: 110 },
-			{ type: 'Coin', y: 130 }
-		],
-		1: [
-			{ type: 'EnemyFlugzeug' },
-			{ type: 'EnemyFlugdings' },
-			{ type: 'EnemyBomb' }
-		]
+		1: []
 	};
 
 	var sec = 1;

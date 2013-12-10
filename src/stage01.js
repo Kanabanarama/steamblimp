@@ -5,38 +5,42 @@ Crafty.scene('Stage01', function () {
 
 	var player = Crafty.e('Player').attr({ x: 100, y: 200 });
 
-	var generateCoin = function () {
+	function createBombs(amount) {
+		for (; amount--;) Craft
+	}
+
+	player.timeout(generateCoin, 2000);
+	function generateCoin() {
 		var rand = Math.random();
 		Crafty.e('Coin').attr({
 			x: 980 + (Crafty.viewport.x * -1),
 			y: rand * (500 + Crafty.viewport.y)
 		});
 		player.timeout(generateCoin, 2000);
-	};
-	player.timeout(generateCoin, 2000);
+	}
 
-	var generateHealth = function () {
+	player.timeout(generateHealth, 12300);
+	function generateHealth() {
 		var rand = Math.random();
 		Crafty.e('Health').attr({
 			x: 980 + (Crafty.viewport.x * -1),
 			y: rand * (500 + Crafty.viewport.y)
 		});
 		player.timeout(generateHealth, 12300);
-	};
-	player.timeout(generateHealth, 12300);
+	}
 
-	var generateBomb = function () {
+	player.timeout(generateBomb, 4000);
+	function generateBomb() {
 		var rand = Math.random();
 		Crafty.e('EnemyBomb').attr({
 			x: rand * 1200 + (Crafty.viewport.x * -1),
 			y: -250
 		});
 		player.timeout(generateBomb, 4000);
-	};
+	}
 
-	player.timeout(generateBomb, 4000);
-
-	var generateFlugzeug = function () {
+	player.timeout(generateFlugzeug, 7000);
+	function generateFlugzeug() {
 		var rand = Math.random();
 		Crafty.e('EnemyFlugzeug').attr({
 			x: -1 * Crafty.viewport.x + 1000,
@@ -44,9 +48,9 @@ Crafty.scene('Stage01', function () {
 		});
 		player.timeout(generateFlugzeug, 7000);
 	}
-	player.timeout(generateFlugzeug, 7000);
 
-	var generateFlugdings = function () {
+	player.timeout(generateFlugdings, 8000);
+	function generateFlugdings() {
 		var rand = Math.random();
 		Crafty.e('EnemyFlugdings').attr({
 			x: -1 * Crafty.viewport.x + 1000,
@@ -54,15 +58,6 @@ Crafty.scene('Stage01', function () {
 		});
 		player.timeout(generateFlugdings, 8000);
 	}
-	player.timeout(generateFlugdings, 8000);
-
-	var generateBoss = function () {
-		Crafty.e('EnemyBossship').attr({
-			x: -1*Crafty.viewport.x + 1000,
-			y: Crafty.viewport.y/2
-		});
-	}
-	player.timeout(generateBoss, 30000);
 
 	Game.score = Crafty.e('Score').attr({x: 15, y: 30 });
 });
