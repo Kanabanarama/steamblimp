@@ -46,11 +46,25 @@ Game = {
 			Crafty.load([
 				'assets/step01_basket.png',
 				'assets/step01_balloon.png',
+				'assets/step02_korb.png',
+				'assets/step02_ballon.png',
+				'assets/step03_korb.png',
+				'assets/step03_ballon.png',
 				'assets/damoney_resize.png',
 				'assets/herz.png',
 				'assets/parallax00.png',
 				'assets/parallax01.png',
 				'assets/parallax02.png',
+				'assets/hintergrund2_ebene0.png',
+				'assets/hintergrund2_ebene1.png',
+				'assets/hintergrund2_ebene2.png',
+				'assets/hintergrund2_ebene3.png',
+				'assets/hintergrund2_ebene4.png',
+				'assets/hintergrund3_ebene0.png',
+				'assets/hintergrund3_ebene1.png',
+				'assets/hintergrund3_ebene2.png',
+				'assets/hintergrund3_ebene3.png',
+				'assets/hintergrund3_ebene4.png',
 				'assets/enemy_balloon_resize.png',
 				'assets/enemy_bomb1_resize.png',
 				'assets/enemy_flugzeug.png',
@@ -72,6 +86,18 @@ Game = {
 				});
 				Crafty.sprite(50, 84, 'assets/step01_balloon.png', {
 					blimp_drive_01: [0, 0]
+				});
+				Crafty.sprite(76, 55, 'assets/step02_korb.png', {
+					blimp_base_02: [0, 0]
+				});
+				Crafty.sprite(76, 55, 'assets/step02_ballon.png', {
+					blimp_drive_02: [0, 0]
+				});
+				Crafty.sprite(86, 64, 'assets/step03_korb.png', {
+					blimp_base_03: [0, 0]
+				});
+				Crafty.sprite(85, 64, 'assets/step03_ballon.png', {
+					blimp_drive_03: [0, 0]
 				});
 				Crafty.sprite(50, 84, "assets/gun.png", {
 					gun_sprite: [0, 0]
@@ -99,6 +125,36 @@ Game = {
 				});
 				Crafty.sprite(2000, 600, "assets/parallax02.png", {
 					background_layer_02: [0, 0]
+				});
+				Crafty.sprite(2000, 600, "assets/hintergrund2_ebene0.png", {
+					background_layer_10: [0, 0]
+				});
+				Crafty.sprite(2016, 600, "assets/hintergrund2_ebene1.png", {
+					background_layer_11: [0, 0]
+				});
+				Crafty.sprite(2016, 600, "assets/hintergrund2_ebene2.png", {
+					background_layer_12: [0, 0]
+				});
+				Crafty.sprite(2002, 620, "assets/hintergrund2_ebene3.png", {
+					background_layer_13: [0, 0]
+				});
+				Crafty.sprite(2000, 600, "assets/hintergrund2_ebene4.png", {
+					background_layer_14: [0, 0]
+				});
+				Crafty.sprite(2000, 600, "assets/hintergrund3_ebene0.png", {
+					background_layer_20: [0, 0]
+				});
+				Crafty.sprite(2000, 600, "assets/hintergrund3_ebene1.png", {
+					background_layer_21: [0, 0]
+				});
+				Crafty.sprite(2000, 600, "assets/hintergrund3_ebene2.png", {
+					background_layer_22: [0, 0]
+				});
+				Crafty.sprite(2000, 704, "assets/hintergrund3_ebene3.png", {
+					background_layer_23: [0, 0]
+				});
+				Crafty.sprite(2000, 600, "assets/hintergrund3_ebene4.png", {
+					background_layer_24: [0, 0]
 				});
 				Crafty.sprite(20, 20, "assets/damoney_resize.png", {
 					coin_cog: [0, 0]

@@ -5,6 +5,8 @@ Crafty.scene('Stage01', function () {
 
 	var player = Crafty.e('Player').attr({ x: 100, y: 200 });
 
+	player.setLevel(1);
+
 	var sceneActive = true;
 
 	player.timeout(generateCoin, 2000);
@@ -37,30 +39,11 @@ Crafty.scene('Stage01', function () {
 		if( sceneActive ) player.timeout(generateBomb, 4000);
 	}
 
-	player.timeout(generateFlugzeug, 7000);
-	function generateFlugzeug() {
-		var rand = Math.random();
-		Crafty.e('EnemyFlugzeug').attr({
-			x: -1 * Crafty.viewport.x + 1000,
-			y: rand * (500 + Crafty.viewport.y)
-		});
-		if( sceneActive ) player.timeout(generateFlugzeug, 7000);
-	}
-
-	player.timeout(generateFlugdings, 8000);
-	function generateFlugdings() {
-		var rand = Math.random();
-		Crafty.e('EnemyFlugdings').attr({
-			x: -1 * Crafty.viewport.x + 1000,
-			y: rand * (500 + Crafty.viewport.y)
-		});
-		if( sceneActive ) player.timeout(generateFlugdings, 8000);
-	}
-
 	Game.score = Crafty.e('Score, Persist');
+	Game.weapons = Crafty.e('Weapons, Persist');
 
 	player.timeout(function () {
 		sceneActive = false;
 		Crafty.scene('Stage02');
-	}, 1000);
+	}, 15000);
 });

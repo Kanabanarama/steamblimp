@@ -14,7 +14,6 @@ Crafty.c('EnemyFlugdings', {
 	wiggleDirection: 0,
 	fly: function (event) {
 		if ((this.wiggleMovement <= 0) && (this.wings.reelPosition() === 2)) {
-			console.log('change direction');
 			var random = Math.random();
 			this.wiggleMovement = 30 + random * 30;
 			if (random > 0.5) {

@@ -1,8 +1,18 @@
 Crafty.c('Player', {
-	width: 50,
-	height: 84,
-	coins: 0,
+	playerSizes: {
+		1: { width: 50, height: 84 },
+		2: { width: 76, height: 55 },
+		3: { width: 86, height: 64 },
+	},
 
+	gunOrigins: {
+		1: { x: 0, y: 0 },
+		2: { x: 30, y: -21 },
+		3: { x: 23, y: -12 },
+	},
+
+	coins: 0,
+	tier: 1,
 	lives: 6,
 
 	init: function () {
@@ -12,7 +22,7 @@ Crafty.c('Player', {
 
 		this.origin('top center');
 
-		this.attr({ w: this.width, h: this.height });
+		this.attr({ w: this.playerSizes[this.tier].width, h: this.playerSizes[this.tier].height });
 
 		this.attachSprites();
 
@@ -20,6 +30,15 @@ Crafty.c('Player', {
 
 		this.onHit('Coin', function () {
 			Game.score.add(1);
+			if(Game.score.get() == 10) {
+				Game.weapons.obtain('Cannon');
+			}
+			if(Game.score.get() == 20) {
+				Game.weapons.obtain('Laser');
+			}
+			if(Game.score.get() == 30) {
+				Game.weapons.obtain('Dubstep');
+			}
 		});
 
 		this.onHit('Health', function () {
@@ -45,6 +64,10 @@ Crafty.c('Player', {
 			this.enemyHit();
 		});
 
+		this.onHit('EnemyBossship', function (hits) {
+			this.enemyHit();
+		});
+
 		this.applyDownDrift();
 
 		this.bind('KeyDown', this.onKeyDown);
@@ -61,43 +84,46 @@ Crafty.c('Player', {
 		if (e.key == this.lastWeapon) return;
 
 		switch (e.key) {
-
 			case Crafty.keys['1']:
+				if(!Game.weapons.inPosession('Gun')) return;
 				this.gun.destroy();
 				this.lastWeapon = e.key;
 				this.gun = Crafty
 					.e('Gun_1')
-					.attr({x: this.x, y: this.y});
+					.attr({x: this.x + this.gunOrigins[this.tier].x, y: this.y + this.gunOrigins[this.tier].y});
 				this.attach(this.gun);
 				break;
 
 			case Crafty.keys['2']:
+				if(!Game.weapons.inPosession('Cannon')) return;
 				this.gun.destroy();
 				this.lastWeapon = e.key;
 				this.gun = Crafty
 					.e('Cannon')
-					.attr({x: this.x + 22, y: this.y + 66});
+					.attr({x: this.x + this.gunOrigins[this.tier].x + 22, y: this.y + this.gunOrigins[this.tier].y + 66});
 				this.attach(this.gun);
 				break;
 
 			case Crafty.keys['3']:
+				if(!Game.weapons.inPosession('Laser')) return;
 				this.gun.destroy();
 				this.lastWeapon = e.key;
 				this.gun = Crafty
 					.e('Laser')
-					.attr({x: this.x + 20, y: this.y + 62});
+					.attr({x: this.x + this.gunOrigins[this.tier].x + 20, y: + this.y + this.gunOrigins[this.tier].y + 62});
 				this.attach(this.gun);
 				break;
 
 			case Crafty.keys['4']:
+				if(!Game.weapons.inPosession('Dubstep')) return;
 				this.gun.destroy();
 				this.lastWeapon = e.key;
 				this.gun = Crafty
 					.e('Dubstep')
 					.attr({
 						rotation: 180,
-						x: this.x + 75,
-						y: this.y + 83
+						x: this.x + this.gunOrigins[this.tier].x + 75,
+						y: this.y + this.gunOrigins[this.tier].y + 83
 					});
 				this.attach(this.gun);
 				break;
@@ -179,6 +205,20 @@ Crafty.c('Player', {
 		}
 	},
 
+	setLevel: function(upgradeToTier) {
+		this.tier = upgradeToTier;
+
+		this.attr({ w: this.playerSizes[this.tier].width, h: this.playerSizes[this.tier].height });
+
+		this.drive.destroy();
+		this.base.destroy();
+		this.gun.destroy();
+
+		this.attachSprites();
+
+		this.attr({ w: this.playerSizes[this.tier].width, h: this.playerSizes[this.tier].height });
+	},
+
 	dead: false,
 	death: function () {
 		this.dead = true;
@@ -229,16 +269,16 @@ Crafty.c('Player', {
 
 	attachSprites: function () {
 		this.base = Crafty
-			.e('2D, Canvas, blimp_base_01')
-			.attr({x: this.x, y: this.y, w: this.width, h: this.height});
+			.e('2D, Canvas, blimp_base_0'+this.tier)
+			.attr({x: this.x, y: this.y, w: this.playerSizes[this.tier].width, h: this.playerSizes[this.tier].height});
 
 		this.drive = Crafty
-			.e('2D, Canvas, blimp_drive_01')
-			.attr({x: this.x, y: this.y, w: this.width, h: this.height});
+			.e('2D, Canvas, blimp_drive_0'+this.tier)
+			.attr({x: this.x, y: this.y, w: this.playerSizes[this.tier].width, h: this.playerSizes[this.tier].height});
 
 		this.gun = Crafty
-			.e('Gun_1')
-			.attr({x: this.x, y: this.y});
+			.e('2D, Canvas, Gun_1')
+			.attr({x: this.x + this.gunOrigins[this.tier].x, y: this.y + this.gunOrigins[this.tier].y});
 
 		this.attach(this.drive);
 		this.attach(this.base);

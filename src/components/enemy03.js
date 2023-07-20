@@ -2,7 +2,7 @@ Crafty.c('EnemyBossship', {
 	health: 250,
 
 	init: function () {
-		this.requires('GameObject, Collision, Enemy');
+		this.requires('GameObject, Collision');
 		this.attr({w: 250, h: 172});
 		this.attachSprites();
 		this.bind('EnterFrame', this.fly);
